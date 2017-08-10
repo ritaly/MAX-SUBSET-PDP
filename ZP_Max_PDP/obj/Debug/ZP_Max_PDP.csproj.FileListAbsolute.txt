@@ -1,0 +1,15 @@
+c:\users\rita\documents\visual studio 2013\Projects\ZP_Max_PDP\ZP_Max_PDP\bin\Debug\ZP_Max_PDP.exe.config
+c:\users\rita\documents\visual studio 2013\Projects\ZP_Max_PDP\ZP_Max_PDP\obj\Debug\ZP_Max_PDP.csprojResolveAssemblyReference.cache
+c:\users\rita\documents\visual studio 2013\Projects\ZP_Max_PDP\ZP_Max_PDP\obj\Debug\ZP_Max_PDP.Properties.Resources.resources
+c:\users\rita\documents\visual studio 2013\Projects\ZP_Max_PDP\ZP_Max_PDP\obj\Debug\ZP_Max_PDP.csproj.GenerateResource.Cache
+c:\users\rita\documents\visual studio 2013\Projects\ZP_Max_PDP\ZP_Max_PDP\bin\Debug\ZP_Max_PDP.exe
+c:\users\rita\documents\visual studio 2013\Projects\ZP_Max_PDP\ZP_Max_PDP\bin\Debug\ZP_Max_PDP.pdb
+c:\users\rita\documents\visual studio 2013\Projects\ZP_Max_PDP\ZP_Max_PDP\bin\Debug\MetroFramework.Design.dll
+c:\users\rita\documents\visual studio 2013\Projects\ZP_Max_PDP\ZP_Max_PDP\bin\Debug\MetroFramework.dll
+c:\users\rita\documents\visual studio 2013\Projects\ZP_Max_PDP\ZP_Max_PDP\bin\Debug\MetroFramework.Fonts.dll
+c:\users\rita\documents\visual studio 2013\Projects\ZP_Max_PDP\ZP_Max_PDP\obj\Debug\ZP_Max_PDP.exe
+c:\users\rita\documents\visual studio 2013\Projects\ZP_Max_PDP\ZP_Max_PDP\obj\Debug\ZP_Max_PDP.pdb
+c:\users\rita\documents\visual studio 2013\Projects\ZP_Max_PDP\ZP_Max_PDP\obj\Debug\ZP_Max_PDP.StartForm.resources
+c:\users\rita\documents\visual studio 2013\Projects\ZP_Max_PDP\ZP_Max_PDP\obj\Debug\ZP_Max_PDP.StartMenu.resources
+c:\users\rita\documents\visual studio 2013\Projects\ZP_Max_PDP\ZP_Max_PDP\obj\Debug\ZP_Max_PDP.Generate_instace.resources
+c:\users\rita\documents\visual studio 2013\Projects\ZP_Max_PDP\ZP_Max_PDP\obj\Debug\ZP_Max_PDP.LoadInstance.resources
