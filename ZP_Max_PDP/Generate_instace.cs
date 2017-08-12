@@ -12,18 +12,29 @@ namespace ZP_Max_PDP
 {
     public partial class Generate_instace : MetroFramework.Controls.MetroUserControl 
     {
+        // Zmienne
+        private List<muliSet> createdMap = new List<muliSet>();
+
         public Generate_instace()
         {
             InitializeComponent();
         }
 
         private void ButtonCreateInstance_Click(object sender, EventArgs e)
-        {
-            int distNumber = Convert.ToInt32(NumElements.Value);
-            Random random_number = new Random();
-            if (distNumber != 0)
+        {            
+            Random randomNumber = new Random();
+            if (Convert.ToInt32(NumElements.Value) != 0)
             {
-
+                int distNumber = Convert.ToInt32(NumElements.Value);
+                for (int i = 0; i < distNumber; i++)
+                {
+                    int drawValue = randomNumber.Next(
+                        Convert.ToInt32(NumRangeStart.Value), 
+                        Convert.ToInt32(NumRangeEnd.Value));
+                    createdMap.Add(new muliSet() { elementOfmultiSet = drawValue });  
+                }
+                DrawGrid.DataSource = createdMap;
+                ButtonCreateInstance.Enabled = false;
             }
             else
             {
@@ -31,6 +42,23 @@ namespace ZP_Max_PDP
             }
         }
    
+
+        // Helper - klasa z multizbiorem
+
+        public class muliSet
+        {
+            public int elementOfmultiSet { get; set; }
+
+            public muliSet()
+            {
+                this.elementOfmultiSet = elementOfmultiSet;
+            }
+
+            public muliSet(int value)
+            {
+                this.elementOfmultiSet = value;
+            }
+        }
 
        
     }
