@@ -21,7 +21,7 @@ namespace ZP_Max_PDP
         {
             if (!StartForm.Instance.MetroContainer.Controls.ContainsKey("Generate_instace"))
             {
-                Generate_instace gi = new Generate_instace();
+                Generate_instace gi = new Generate_instace(); //przechodzi do generowana nowej instancji
                 gi.Dock = DockStyle.Fill;
                 StartForm.Instance.MetroContainer.Controls.Add(gi);
             }
@@ -33,9 +33,9 @@ namespace ZP_Max_PDP
         {
             if (!StartForm.Instance.MetroContainer.Controls.ContainsKey("LoadInstance"))
             {
-                Generate_instace gi = new Generate_instace();
-                gi.Dock = DockStyle.Fill;
-                StartForm.Instance.MetroContainer.Controls.Add(gi);
+                LoadInstance li = new LoadInstance();
+                li.Dock = DockStyle.Fill;
+                StartForm.Instance.MetroContainer.Controls.Add(li);
             }
             StartForm.Instance.MetroContainer.Controls["LoadInstance"].BringToFront();
             StartForm.Instance.ButtonBack.Visible = true;

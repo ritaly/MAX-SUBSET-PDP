@@ -17,9 +17,21 @@ namespace ZP_Max_PDP
             InitializeComponent();
         }
 
-        private void Generate_instace_Load(object sender, EventArgs e)
+        private void ButtonCreateInstance_Click(object sender, EventArgs e)
         {
+            int distNumber = Convert.ToInt32(NumElements.Value);
+            Random random_number = new Random();
+            if (distNumber != 0)
+            {
 
+            }
+            else
+            {
+                MessageBox.Show("Zbiór nie może mieć 0 elementów " + "\n");
+            }
         }
+   
+
+       
     }
 }

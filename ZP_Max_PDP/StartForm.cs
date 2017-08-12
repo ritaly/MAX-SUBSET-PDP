@@ -31,8 +31,8 @@ namespace ZP_Max_PDP
 
         public MetroFramework.Controls.MetroLink ButtonBack
         {
-            get { return backLink;  }
-            set { backLink = value;  }
+            get { return LinkBack;  }
+            set { LinkBack = value;  }
         }
 
         public StartForm()
@@ -42,7 +42,7 @@ namespace ZP_Max_PDP
 
         private void StartForm_Load(object sender, EventArgs e)
         {
-            backLink.Visible = false;
+            LinkBack.Visible = false;
             _instance = this;
             StartMenu sm = new StartMenu();
             sm.Dock = DockStyle.Fill;
@@ -52,8 +52,7 @@ namespace ZP_Max_PDP
         private void backLink_Click(object sender, EventArgs e)
         {
             metroPanel1.Controls["StartMenu"].BringToFront();
-            backLink.Visible = false;
-
+            LinkBack.Visible = false;
         }
 
     }

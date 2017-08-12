@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
-            this.backLink = new MetroFramework.Controls.MetroLink();
+            this.LinkBack = new MetroFramework.Controls.MetroLink();
             this.SuspendLayout();
             // 
             // metroPanel1
@@ -42,30 +42,30 @@
             this.metroPanel1.HorizontalScrollbarSize = 10;
             this.metroPanel1.Location = new System.Drawing.Point(13, 79);
             this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(952, 444);
+            this.metroPanel1.Size = new System.Drawing.Size(916, 545);
             this.metroPanel1.TabIndex = 1;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
             // 
-            // backLink
+            // LinkBack
             // 
-            this.backLink.Image = global::ZP_Max_PDP.Properties.Resources.back;
-            this.backLink.ImageSize = 40;
-            this.backLink.Location = new System.Drawing.Point(23, 17);
-            this.backLink.Name = "backLink";
-            this.backLink.Size = new System.Drawing.Size(48, 46);
-            this.backLink.TabIndex = 0;
-            this.backLink.UseSelectable = true;
-            this.backLink.Click += new System.EventHandler(this.backLink_Click);
+            this.LinkBack.Image = global::ZP_Max_PDP.Properties.Resources.back;
+            this.LinkBack.ImageSize = 40;
+            this.LinkBack.Location = new System.Drawing.Point(23, 17);
+            this.LinkBack.Name = "LinkBack";
+            this.LinkBack.Size = new System.Drawing.Size(48, 46);
+            this.LinkBack.TabIndex = 0;
+            this.LinkBack.UseSelectable = true;
+            this.LinkBack.Click += new System.EventHandler(this.backLink_Click);
             // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(980, 540);
+            this.ClientSize = new System.Drawing.Size(944, 641);
             this.Controls.Add(this.metroPanel1);
-            this.Controls.Add(this.backLink);
+            this.Controls.Add(this.LinkBack);
             this.Name = "StartForm";
             this.Text = "Max PDP";
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
@@ -76,7 +76,7 @@
 
         #endregion
 
-        private MetroFramework.Controls.MetroLink backLink;
+        private MetroFramework.Controls.MetroLink LinkBack;
         private MetroFramework.Controls.MetroPanel metroPanel1;
     }
 }
