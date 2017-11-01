@@ -60,6 +60,12 @@
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.addMapButton = new MetroFramework.Controls.MetroButton();
+            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
+            this.addMultiButton = new MetroFramework.Controls.MetroButton();
+            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
+            this.addMultiValue = new System.Windows.Forms.NumericUpDown();
+            this.addMultiIndex = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.NumElements)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumRangeStart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumRangeEnd)).BeginInit();
@@ -69,6 +75,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.NumMistakes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addMapIndex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addMapValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.addMultiValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.addMultiIndex)).BeginInit();
             this.SuspendLayout();
             // 
             // ElementsLabel
@@ -352,7 +360,7 @@
             // MistakesLabel
             // 
             this.MistakesLabel.AutoSize = true;
-            this.MistakesLabel.Location = new System.Drawing.Point(734, 309);
+            this.MistakesLabel.Location = new System.Drawing.Point(734, 367);
             this.MistakesLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.MistakesLabel.Name = "MistakesLabel";
             this.MistakesLabel.Size = new System.Drawing.Size(155, 19);
@@ -367,7 +375,7 @@
             this.NumMistakes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NumMistakes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.NumMistakes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.NumMistakes.Location = new System.Drawing.Point(779, 341);
+            this.NumMistakes.Location = new System.Drawing.Point(745, 393);
             this.NumMistakes.Name = "NumMistakes";
             this.NumMistakes.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.NumMistakes.Size = new System.Drawing.Size(77, 23);
@@ -380,7 +388,7 @@
             this.SaveButton.BackColor = System.Drawing.Color.Crimson;
             this.SaveButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SaveButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.SaveButton.Location = new System.Drawing.Point(746, 453);
+            this.SaveButton.Location = new System.Drawing.Point(779, 472);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(122, 43);
             this.SaveButton.TabIndex = 17;
@@ -420,7 +428,7 @@
             this.addMapIndex.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.addMapIndex.Cursor = System.Windows.Forms.Cursors.Hand;
             this.addMapIndex.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.addMapIndex.Location = new System.Drawing.Point(745, 138);
+            this.addMapIndex.Location = new System.Drawing.Point(745, 128);
             this.addMapIndex.Minimum = new decimal(new int[] {
             1,
             0,
@@ -443,7 +451,7 @@
             this.addMapValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.addMapValue.Cursor = System.Windows.Forms.Cursors.Hand;
             this.addMapValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.addMapValue.Location = new System.Drawing.Point(814, 138);
+            this.addMapValue.Location = new System.Drawing.Point(814, 128);
             this.addMapValue.Minimum = new decimal(new int[] {
             1,
             0,
@@ -474,7 +482,7 @@
             // 
             this.metroLabel3.AutoSize = true;
             this.metroLabel3.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel3.Location = new System.Drawing.Point(745, 123);
+            this.metroLabel3.Location = new System.Drawing.Point(745, 113);
             this.metroLabel3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(36, 15);
@@ -485,7 +493,7 @@
             // 
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel4.Location = new System.Drawing.Point(814, 123);
+            this.metroLabel4.Location = new System.Drawing.Point(814, 113);
             this.metroLabel4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(53, 15);
@@ -499,7 +507,7 @@
             this.addMapButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.addMapButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.addMapButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.addMapButton.Location = new System.Drawing.Point(779, 167);
+            this.addMapButton.Location = new System.Drawing.Point(779, 157);
             this.addMapButton.Name = "addMapButton";
             this.addMapButton.Size = new System.Drawing.Size(69, 20);
             this.addMapButton.TabIndex = 23;
@@ -510,11 +518,114 @@
             this.addMapButton.UseSelectable = true;
             this.addMapButton.Click += new System.EventHandler(this.addMapButton_Click);
             // 
+            // metroLabel5
+            // 
+            this.metroLabel5.AutoSize = true;
+            this.metroLabel5.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel5.Location = new System.Drawing.Point(814, 282);
+            this.metroLabel5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.metroLabel5.Name = "metroLabel5";
+            this.metroLabel5.Size = new System.Drawing.Size(53, 15);
+            this.metroLabel5.TabIndex = 31;
+            this.metroLabel5.Text = "długość: ";
+            // 
+            // metroLabel6
+            // 
+            this.metroLabel6.AutoSize = true;
+            this.metroLabel6.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel6.Location = new System.Drawing.Point(745, 282);
+            this.metroLabel6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.metroLabel6.Name = "metroLabel6";
+            this.metroLabel6.Size = new System.Drawing.Size(36, 15);
+            this.metroLabel6.TabIndex = 30;
+            this.metroLabel6.Text = "index:";
+            // 
+            // addMultiButton
+            // 
+            this.addMultiButton.BackColor = System.Drawing.Color.Transparent;
+            this.addMultiButton.BackgroundImage = global::ZP_Max_PDP.Properties.Resources.plus;
+            this.addMultiButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.addMultiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addMultiButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.addMultiButton.Location = new System.Drawing.Point(779, 326);
+            this.addMultiButton.Name = "addMultiButton";
+            this.addMultiButton.Size = new System.Drawing.Size(69, 20);
+            this.addMultiButton.TabIndex = 29;
+            this.addMultiButton.Text = "Dodaj";
+            this.addMultiButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.addMultiButton.UseCustomBackColor = true;
+            this.addMultiButton.UseCustomForeColor = true;
+            this.addMultiButton.UseSelectable = true;
+            this.addMultiButton.Click += new System.EventHandler(this.addMultiButton_Click);
+            // 
+            // metroLabel7
+            // 
+            this.metroLabel7.AutoSize = true;
+            this.metroLabel7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel7.Location = new System.Drawing.Point(734, 260);
+            this.metroLabel7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.metroLabel7.Name = "metroLabel7";
+            this.metroLabel7.Size = new System.Drawing.Size(99, 19);
+            this.metroLabel7.TabIndex = 28;
+            this.metroLabel7.Text = "Dodaj odcinek:";
+            // 
+            // addMultiValue
+            // 
+            this.addMultiValue.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.addMultiValue.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.addMultiValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.addMultiValue.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addMultiValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.addMultiValue.Location = new System.Drawing.Point(814, 297);
+            this.addMultiValue.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.addMultiValue.Name = "addMultiValue";
+            this.addMultiValue.Size = new System.Drawing.Size(63, 23);
+            this.addMultiValue.TabIndex = 27;
+            this.addMultiValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.addMultiValue.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // addMultiIndex
+            // 
+            this.addMultiIndex.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.addMultiIndex.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.addMultiIndex.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.addMultiIndex.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addMultiIndex.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.addMultiIndex.Location = new System.Drawing.Point(745, 297);
+            this.addMultiIndex.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.addMultiIndex.Name = "addMultiIndex";
+            this.addMultiIndex.Size = new System.Drawing.Size(63, 23);
+            this.addMultiIndex.TabIndex = 26;
+            this.addMultiIndex.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.addMultiIndex.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            // 
             // Generate_instace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.Controls.Add(this.metroLabel5);
+            this.Controls.Add(this.metroLabel6);
+            this.Controls.Add(this.addMultiButton);
+            this.Controls.Add(this.metroLabel7);
+            this.Controls.Add(this.addMultiValue);
+            this.Controls.Add(this.addMultiIndex);
             this.Controls.Add(this.metroLabel4);
             this.Controls.Add(this.metroLabel3);
             this.Controls.Add(this.addMapButton);
@@ -549,6 +660,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.NumMistakes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addMapIndex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addMapValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.addMultiValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.addMultiIndex)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -579,5 +692,11 @@
         private MetroFramework.Controls.MetroButton addMapButton;
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroLabel metroLabel4;
+        private MetroFramework.Controls.MetroLabel metroLabel5;
+        private MetroFramework.Controls.MetroLabel metroLabel6;
+        private MetroFramework.Controls.MetroButton addMultiButton;
+        private MetroFramework.Controls.MetroLabel metroLabel7;
+        private System.Windows.Forms.NumericUpDown addMultiValue;
+        private System.Windows.Forms.NumericUpDown addMultiIndex;
     }
 }
