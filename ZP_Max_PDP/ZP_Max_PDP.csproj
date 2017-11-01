@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Delete.cs" />
     <Compile Include="Generate_instace.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -117,6 +118,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\delete2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\delete_item.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\plus.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
