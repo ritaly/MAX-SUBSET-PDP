@@ -13,7 +13,6 @@ namespace ZP_Max_PDP
 {
     public partial class Generate_instace : MetroFramework.Controls.MetroUserControl 
     {
-        // Zmienne
         private List<multiSet> createdMap = new List<multiSet>();
         private List<multiSet> createdSolution = new List<multiSet>();
         private List<multiSet> createdMultiset = new List<multiSet>();
@@ -41,6 +40,13 @@ namespace ZP_Max_PDP
                 ButtonCreateInstance.Enabled = false;
                 ButtonCreateMultiset.Enabled = true;
                 EditDescription.Visible = true;
+
+                AddMapLabel.Visible = true;
+                addMapIndex.Visible = true;
+                addMapValue.Visible = true;
+                addmapid.Visible = true;
+                addmapv.Visible = true;
+                addMapButton.Visible = true;
             }
             else
             {
@@ -73,9 +79,16 @@ namespace ZP_Max_PDP
                     createdMultiset.Add(item: new multiSet() { elementOfmultiSet = sum });
                 }
             }
-            //dodac elementu multizbioru z poziomu interface'u
             MultisetGrid.DataSource = createdMultiset;
             addDeleteButton(MultisetGrid);
+
+            AddMultiLabel.Visible = true;
+            addMultiIndex.Visible = true;
+            addMultiValue.Visible = true;
+            addmultiid.Visible = true;
+            addmultiv.Visible = true;
+            addMultiButton.Visible = true;
+
             MistakesLabel.Visible = true;
             NumMistakes.Visible = true;
             SaveButton.Visible = true;
