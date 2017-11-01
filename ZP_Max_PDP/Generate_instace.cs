@@ -161,5 +161,26 @@ namespace ZP_Max_PDP
             createdMultiset.RemoveAt(e.RowIndex);
             MultisetGrid.DataSource = createdMultiset.ToList();
         }
+
+        private void addMultiButton_Click(object sender, EventArgs e)
+        {
+            int index = Convert.ToInt32(addMultiIndex.Value);
+            int value = Convert.ToInt32(addMultiValue.Value);
+
+            if (index >= createdMultiset.Count)
+            {
+                MessageBox.Show("Index nie może być większy niż max index." + "\n" + "Aby dodać element na końcu zbioru wpisz index: -1 ");
+            }
+            else if (index == -1)
+            {
+                createdMultiset.Add(new multiSet() { elementOfmultiSet = value });
+                MultisetGrid.DataSource = createdMultiset.ToList();
+            }
+            else
+            {
+                createdMultiset.Insert(index, new multiSet() { elementOfmultiSet = value });
+                MultisetGrid.DataSource = createdMultiset.ToList();
+            }
+        }
     }
 }
