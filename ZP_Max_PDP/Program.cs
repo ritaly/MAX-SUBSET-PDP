@@ -16,7 +16,7 @@ namespace ZP_Max_PDP
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StartForm());
+            Application.Run(new StartForm()); //run aplication form
         }
     }
 }
