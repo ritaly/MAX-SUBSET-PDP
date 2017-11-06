@@ -16,4 +16,6 @@ Displayed at:  DrawGridView
 Save to: file.csv (grandparent directory)  
 Pessimistic computational complexity: O(n2)
 
-### 
+### Read from file  
+CSV files  
+With mistakes
