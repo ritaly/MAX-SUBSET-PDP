@@ -42,7 +42,7 @@
             this.metroPanel1.HorizontalScrollbarSize = 10;
             this.metroPanel1.Location = new System.Drawing.Point(13, 79);
             this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(916, 545);
+            this.metroPanel1.Size = new System.Drawing.Size(1078, 604);
             this.metroPanel1.TabIndex = 1;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
@@ -63,7 +63,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 641);
+            this.ClientSize = new System.Drawing.Size(1106, 700);
             this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.LinkBack);
             this.Name = "StartForm";

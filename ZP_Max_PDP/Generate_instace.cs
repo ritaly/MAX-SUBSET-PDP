@@ -11,7 +11,7 @@ using System.IO;
 
 namespace ZP_Max_PDP
 {
-    public partial class Generate_instace : MetroFramework.Controls.MetroUserControl 
+    public partial class Generate_instace : MetroFramework.Controls.MetroUserControl
     {
         private List<multiSet> createdMap = new List<multiSet>();
         private List<multiSet> createdSolution = new List<multiSet>();
@@ -23,7 +23,7 @@ namespace ZP_Max_PDP
         }
 
         private void ButtonCreateInstance_Click(object sender, EventArgs e)
-        {            
+        {
             Random randomNumber = new Random();
             int minValue = Convert.ToInt32(NumRangeStart.Value);
             int maxValue = Convert.ToInt32(NumRangeEnd.Value);
@@ -32,7 +32,7 @@ namespace ZP_Max_PDP
             {
                 for (int i = 0; i < Convert.ToInt32(NumElements.Value); i++)
                 {
-                    int drawValue = randomNumber.Next(minValue: minValue, maxValue: maxValue );
+                    int drawValue = randomNumber.Next(minValue: minValue, maxValue: maxValue);
                     createdMap.Add(new multiSet() { elementOfmultiSet = drawValue });
                 }
                 DrawGrid.DataSource = createdMap; //wypełnianie tabeli
@@ -58,7 +58,7 @@ namespace ZP_Max_PDP
         {
             // rozwazanie
             int sum = 0;
-            createdSolution.Add(new multiSet() { elementOfmultiSet = 0 }); //pierwszy pkt to 0
+            //createdSolution.Add(new multiSet() { elementOfmultiSet = 0 }); //pierwszy pkt to 0
             for (int i = 0; i < createdMap.Count; i++)
             {
                 sum = sum + createdMap[i].elementOfmultiSet;
@@ -73,7 +73,7 @@ namespace ZP_Max_PDP
             for (int i = 0; i < createdMap.Count; i++)
             {
                 sum = createdMap[i].elementOfmultiSet;
-                foreach (multiSet item in createdMap.Skip(i+1) )
+                foreach (multiSet item in createdMap.Skip(i + 1))
                 {
                     sum += item.elementOfmultiSet;
                     createdMultiset.Add(item: new multiSet() { elementOfmultiSet = sum });
@@ -90,8 +90,10 @@ namespace ZP_Max_PDP
             addMultiButton.Visible = true;
 
             MistakesLabel.Visible = true;
+            MistakesButton.Visible = true;
             NumMistakes.Visible = true;
             SaveButton.Visible = true;
+            NextButton.Visible = true;
         }
         private void SaveButton_Click(object sender, EventArgs e)
         {
@@ -102,7 +104,7 @@ namespace ZP_Max_PDP
             string filePath = path + name + format;
             using (var file = File.CreateText(filePath))
             {
-                foreach( var item in createdMultiset)
+                foreach (var item in createdMultiset)
                 {
                     file.WriteLine(item.elementOfmultiSet);
                 }
@@ -153,7 +155,7 @@ namespace ZP_Max_PDP
 
             if (index >= createdMap.Count)
             {
-                MessageBox.Show("Index nie może być większy niż max index." + "\n" + "Aby dodać element na końcu zbioru wpisz index: -1 " );
+                MessageBox.Show("Index nie może być większy niż max index." + "\n" + "Aby dodać element na końcu zbioru wpisz index: -1 ");
             }
             else if (index == -1)
             {
@@ -192,6 +194,33 @@ namespace ZP_Max_PDP
             else
             {
                 createdMultiset.Insert(index, new multiSet() { elementOfmultiSet = value });
+                MultisetGrid.DataSource = createdMultiset.ToList();
+            }
+        }
+
+        private void MistakesButton_Click(object sender, EventArgs e)
+        {
+            Random randomNumber = new Random();
+            int minValue = 1;
+            int maxValue = 100;
+            int mistakes = Convert.ToInt32(NumMistakes.Value);
+
+            if (mistakes == 0)
+            {
+                MessageBox.Show("Nie można wstawić 0 błędów " + "\n");
+            }
+            if (mistakes > createdMultiset.Count)
+            {
+                MessageBox.Show("Nie można wstawić więcej błędów niż liczba elementów" + "\n");
+            }
+            else
+            {
+                for (int i = 0; i < mistakes; i++)
+                {
+                    int index = randomNumber.Next(0, createdMultiset.Count);
+                    int value = randomNumber.Next(minValue: minValue, maxValue: maxValue);
+                    createdMultiset[index] = new multiSet() { elementOfmultiSet = value };
+                }
                 MultisetGrid.DataSource = createdMultiset.ToList();
             }
         }

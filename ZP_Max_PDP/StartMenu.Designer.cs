@@ -35,26 +35,29 @@
             // Generate
             // 
             this.Generate.ActiveControl = null;
-            this.Generate.BackColor = System.Drawing.SystemColors.Control;
+            this.Generate.BackColor = System.Drawing.Color.MediumAquamarine;
             this.Generate.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Generate.Location = new System.Drawing.Point(95, 122);
+            this.Generate.Location = new System.Drawing.Point(422, 171);
             this.Generate.Name = "Generate";
             this.Generate.Size = new System.Drawing.Size(250, 75);
             this.Generate.TabIndex = 0;
             this.Generate.Text = "Utwórz nową instację";
             this.Generate.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.Generate.UseCustomBackColor = true;
             this.Generate.UseSelectable = true;
             this.Generate.Click += new System.EventHandler(this.Generate_Click);
             // 
             // FromFile
             // 
             this.FromFile.ActiveControl = null;
-            this.FromFile.Location = new System.Drawing.Point(95, 251);
+            this.FromFile.BackColor = System.Drawing.Color.DarkCyan;
+            this.FromFile.Location = new System.Drawing.Point(422, 329);
             this.FromFile.Name = "FromFile";
             this.FromFile.Size = new System.Drawing.Size(250, 75);
             this.FromFile.TabIndex = 1;
             this.FromFile.Text = "Dodaj instancję z pliku";
             this.FromFile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.FromFile.UseCustomBackColor = true;
             this.FromFile.UseSelectable = true;
             this.FromFile.Click += new System.EventHandler(this.FromFile_Click);
             // 
@@ -65,7 +68,7 @@
             this.Controls.Add(this.FromFile);
             this.Controls.Add(this.Generate);
             this.Name = "StartMenu";
-            this.Size = new System.Drawing.Size(770, 473);
+            this.Size = new System.Drawing.Size(1072, 604);
             this.Theme = MetroFramework.MetroThemeStyle.Light;
             this.ResumeLayout(false);
 
