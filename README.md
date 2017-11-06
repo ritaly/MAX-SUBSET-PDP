@@ -10,8 +10,10 @@
   * MetroModernUI.1.4.0.0 (framework) 
   
 
-### Instance generator:
+### Instance generator: ###
 Main data structure: List<>  
 Displayed at:  DrawGridView  
 Save to: file.csv (grandparent directory)  
 Pessimistic computational complexity: O(n2)
+
+### 
