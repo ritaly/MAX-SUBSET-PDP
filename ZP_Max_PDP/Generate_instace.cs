@@ -35,8 +35,8 @@ namespace ZP_Max_PDP
                     int drawValue = randomNumber.Next(minValue: minValue, maxValue: maxValue);
                     createdMap.Add(new multiSet() { elementOfmultiSet = drawValue });
                 }
-                DrawGrid.DataSource = createdMap; //wypełnianie tabeli
-                addDeleteButton(DrawGrid); //delete button
+                DrawGrid.DataSource = createdMap; //fill table
+                addDeleteButton(DrawGrid); //delete button via helper method
                 ButtonCreateInstance.Enabled = false;
                 ButtonCreateMultiset.Enabled = true;
                 EditDescription.Visible = true;
@@ -56,7 +56,7 @@ namespace ZP_Max_PDP
 
         private void ButtonCreateMultiset_Click(object sender, EventArgs e)
         {
-            // rozwazanie
+            // solution
             int sum = 0;
             //createdSolution.Add(new multiSet() { elementOfmultiSet = 0 }); //pierwszy pkt to 0
             for (int i = 0; i < createdMap.Count; i++)
@@ -67,8 +67,7 @@ namespace ZP_Max_PDP
             SolutionGrid.DataSource = createdSolution;
             ButtonCreateMultiset.Enabled = false;
 
-            //generowanie multizbioru
-
+            //create multiset / generate all distances
             createdMultiset.AddRange(createdMap);
             for (int i = 0; i < createdMap.Count; i++)
             {
@@ -82,6 +81,7 @@ namespace ZP_Max_PDP
             MultisetGrid.DataSource = createdMultiset;
             addDeleteButton(MultisetGrid);
 
+            // UI update
             AddMultiLabel.Visible = true;
             addMultiIndex.Visible = true;
             addMultiValue.Visible = true;
