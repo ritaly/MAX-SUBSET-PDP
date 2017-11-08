@@ -56,4 +56,30 @@ namespace ZP_Max_PDP
         }
 
     }
+
+    // Helpers
+
+    public class multiSet
+    {
+        public int elementOfmultiSet { get; set; }
+
+        public multiSet()
+        {
+            this.elementOfmultiSet = elementOfmultiSet;
+        }
+
+        public multiSet(int value)
+        {
+            this.elementOfmultiSet = value;
+        }
+
+        public static multiSet FromCsv(string csvLine)
+        {
+            string[] str = csvLine.Split(',');
+            int value;
+            bool success = int.TryParse(str[0], out value);
+            multiSet multiElement = new multiSet() { elementOfmultiSet = value };
+            return multiElement;
+        }
+    }
 }

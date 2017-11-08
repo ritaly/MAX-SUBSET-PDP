@@ -35,8 +35,8 @@ namespace ZP_Max_PDP
                     int drawValue = randomNumber.Next(minValue: minValue, maxValue: maxValue);
                     createdMap.Add(new multiSet() { elementOfmultiSet = drawValue });
                 }
-                DrawGrid.DataSource = createdMap; //wypełnianie tabeli
-                addDeleteButton(DrawGrid); //delete button
+                DrawGrid.DataSource = createdMap; //fill table
+                addDeleteButton(DrawGrid); //delete button via helper method
                 ButtonCreateInstance.Enabled = false;
                 ButtonCreateMultiset.Enabled = true;
                 EditDescription.Visible = true;
@@ -56,7 +56,7 @@ namespace ZP_Max_PDP
 
         private void ButtonCreateMultiset_Click(object sender, EventArgs e)
         {
-            // rozwazanie
+            // solution
             int sum = 0;
             //createdSolution.Add(new multiSet() { elementOfmultiSet = 0 }); //pierwszy pkt to 0
             for (int i = 0; i < createdMap.Count; i++)
@@ -67,9 +67,8 @@ namespace ZP_Max_PDP
             SolutionGrid.DataSource = createdSolution;
             ButtonCreateMultiset.Enabled = false;
 
-            //generowanie multizbioru
-
-            createdMultiset.AddRange(createdMap);
+            //create multiset / generate all distances
+            createdMultiset.AddRange(createdMap); // copy
             for (int i = 0; i < createdMap.Count; i++)
             {
                 sum = createdMap[i].elementOfmultiSet;
@@ -82,6 +81,7 @@ namespace ZP_Max_PDP
             MultisetGrid.DataSource = createdMultiset;
             addDeleteButton(MultisetGrid);
 
+            // UI update
             AddMultiLabel.Visible = true;
             addMultiIndex.Visible = true;
             addMultiValue.Visible = true;
@@ -106,27 +106,11 @@ namespace ZP_Max_PDP
             {
                 foreach (var item in createdMultiset)
                 {
-                    file.WriteLine(item.elementOfmultiSet);
+                    file.WriteLine(item.elementOfmultiSet + ",");
                 }
             }
+            SaveButton.Text = "✔️ Zapisano";
             SaveButton.Enabled = false;
-        }
-
-        // Helpers
-
-        public class multiSet
-        {
-            public int elementOfmultiSet { get; set; }
-
-            public multiSet()
-            {
-                this.elementOfmultiSet = elementOfmultiSet;
-            }
-
-            public multiSet(int value)
-            {
-                this.elementOfmultiSet = value;
-            }
         }
 
         private void addDeleteButton(MetroFramework.Controls.MetroGrid Grid)
@@ -155,7 +139,7 @@ namespace ZP_Max_PDP
 
             if (index >= createdMap.Count)
             {
-                MessageBox.Show("Index nie może być większy niż max index." + "\n" + "Aby dodać element na końcu zbioru wpisz index: -1 ");
+                MessageBox.Show("Index nie może być większy niż max index: " + (createdMap.Count-1).ToString() + ".\n" + "Aby dodać element na końcu zbioru wpisz index: -1 ");
             }
             else if (index == -1)
             {
@@ -184,7 +168,7 @@ namespace ZP_Max_PDP
 
             if (index >= createdMultiset.Count)
             {
-                MessageBox.Show("Index nie może być większy niż max index." + "\n" + "Aby dodać element na końcu zbioru wpisz index: -1 ");
+                MessageBox.Show("Index nie może być większy niż max index: " + (createdMultiset.Count-1).ToString() + ".\n" + "Aby dodać element na końcu zbioru wpisz index: -1 ");
             }
             else if (index == -1)
             {
@@ -211,7 +195,7 @@ namespace ZP_Max_PDP
             }
             if (mistakes > createdMultiset.Count)
             {
-                MessageBox.Show("Nie można wstawić więcej błędów niż liczba elementów" + "\n");
+                MessageBox.Show("Nie można wstawić więcej błędów niż liczba elementów: " + createdMultiset.Count.ToString() + "\n");
             }
             else
             {
@@ -223,6 +207,18 @@ namespace ZP_Max_PDP
                 }
                 MultisetGrid.DataSource = createdMultiset.ToList();
             }
+        }
+
+        private void NextButton_Click(object sender, EventArgs e)
+        {
+            if (!StartForm.Instance.MetroContainer.Controls.ContainsKey("Algo1"))
+            {
+                Algo1 li = new Algo1(createdMultiset);
+                li.Dock = DockStyle.Fill;
+                StartForm.Instance.MetroContainer.Controls.Add(li);
+            }
+            StartForm.Instance.MetroContainer.Controls["Algo1"].BringToFront();
+            StartForm.Instance.ButtonBack.Visible = true;
         }
     }
 }
