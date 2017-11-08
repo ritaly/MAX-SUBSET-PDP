@@ -54,7 +54,10 @@ namespace ZP_Max_PDP
                     instanceMultiset.RemoveAll(d => d.elementOfmultiSet == 0);
                     secondGrid.DataSource = instanceMultiset;
                 }
-                
+                else
+                {
+                    instanceMultiset.AddRange(readMultiset);
+                }
                
             }
 
@@ -64,7 +67,7 @@ namespace ZP_Max_PDP
         {
             if (!StartForm.Instance.MetroContainer.Controls.ContainsKey("Algo1"))
             {
-                Algo1 li = new Algo1();
+                Algo1 li = new Algo1(instanceMultiset);
                 li.Dock = DockStyle.Fill;
                 StartForm.Instance.MetroContainer.Controls.Add(li);
             }

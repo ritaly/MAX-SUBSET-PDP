@@ -208,5 +208,17 @@ namespace ZP_Max_PDP
                 MultisetGrid.DataSource = createdMultiset.ToList();
             }
         }
+
+        private void NextButton_Click(object sender, EventArgs e)
+        {
+            if (!StartForm.Instance.MetroContainer.Controls.ContainsKey("Algo1"))
+            {
+                Algo1 li = new Algo1(createdMultiset);
+                li.Dock = DockStyle.Fill;
+                StartForm.Instance.MetroContainer.Controls.Add(li);
+            }
+            StartForm.Instance.MetroContainer.Controls["Algo1"].BringToFront();
+            StartForm.Instance.ButtonBack.Visible = true;
+        }
     }
 }
