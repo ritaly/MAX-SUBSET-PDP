@@ -23,9 +23,16 @@ namespace ZP_Max_PDP
 
         private void startClimbing_Click(object sender, EventArgs e)
         {
+            Random randomValue = new Random();
+            int minValue = 0;
+            int maxValue = Convert.ToInt32(_multiset.Count);
             for (int i = 0; i <= rangeRestart.Value; i++)
             {
-                Random randomValue = new Random();
+                int randomStart = randomValue.Next(minValue: minValue, maxValue: maxValue); // actual max value
+                int max = randomStart; 
+                //compare to neibourhoods
+
+                
 
                 progressBar.Value = i;
                 progressBar.Update();
