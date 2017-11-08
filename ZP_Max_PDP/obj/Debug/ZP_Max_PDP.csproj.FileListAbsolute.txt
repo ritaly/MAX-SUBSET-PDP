@@ -63,3 +63,4 @@ C:\Users\Rita\Documents\ZP_Max_PDP\ZP_Max_PDP\obj\Debug\ZP_Max_PDP.Properties.Re
 C:\Users\Rita\Documents\ZP_Max_PDP\ZP_Max_PDP\obj\Debug\ZP_Max_PDP.StartMenu.resources
 C:\Users\Rita\Documents\ZP_Max_PDP\ZP_Max_PDP\obj\Debug\ZP_Max_PDP.csproj.GenerateResource.Cache
 C:\Users\Rita\Documents\ZP_Max_PDP\ZP_Max_PDP\obj\Debug\ZP_Max_PDP.csprojResolveAssemblyReference.cache
+C:\Users\Rita\Documents\ZP_Max_PDP\ZP_Max_PDP\obj\Debug\ZP_Max_PDP.Algo1.resources

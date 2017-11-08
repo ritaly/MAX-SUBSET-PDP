@@ -53,7 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Delete.cs" />
+    <Compile Include="Algo1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Algo1.Designer.cs">
+      <DependentUpon>Algo1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Generate_instace.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -81,6 +86,9 @@
     <Compile Include="StartMenu.Designer.cs">
       <DependentUpon>StartMenu.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Algo1.resx">
+      <DependentUpon>Algo1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Generate_instace.resx">
       <DependentUpon>Generate_instace.cs</DependentUpon>
     </EmbeddedResource>

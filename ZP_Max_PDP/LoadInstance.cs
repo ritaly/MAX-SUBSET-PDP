@@ -39,7 +39,7 @@ namespace ZP_Max_PDP
                 if ((readMultiset != null) && (readMultiset.Count != 0))
                 {
                     firstGrid.DataSource = readMultiset;
-
+                    NextButton.Visible = true;
                     withZero = readMultiset.Any(x => x.elementOfmultiSet == 0);
                 }
                 else
@@ -58,6 +58,18 @@ namespace ZP_Max_PDP
                
             }
 
+        }
+
+        private void NextButton_Click(object sender, EventArgs e)
+        {
+            if (!StartForm.Instance.MetroContainer.Controls.ContainsKey("Algo1"))
+            {
+                Algo1 li = new Algo1();
+                li.Dock = DockStyle.Fill;
+                StartForm.Instance.MetroContainer.Controls.Add(li);
+            }
+            StartForm.Instance.MetroContainer.Controls["Algo1"].BringToFront();
+            StartForm.Instance.ButtonBack.Visible = true;
         }
 
  
