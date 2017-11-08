@@ -66,6 +66,7 @@
     <Compile Include="LoadInstance.Designer.cs">
       <DependentUpon>LoadInstance.cs</DependentUpon>
     </Compile>
+    <Compile Include="multiSet.cs" />
     <Compile Include="StartForm.cs">
       <SubType>Form</SubType>
     </Compile>

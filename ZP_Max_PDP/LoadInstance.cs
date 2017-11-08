@@ -18,20 +18,44 @@ namespace ZP_Max_PDP
             InitializeComponent();
         }
 
+        private List<multiSet> instanceMultiset = new List<multiSet>();
+
         private void openFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Title = "Wybierz plik CSV z instancją";
+            ofd.Filter = "CSV |*.csv";
 
-            ofd.Filter = "CSV|*.csv";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 fileName.Text = ofd.SafeFileName;
                 fullPath.Text = ofd.FileName;
 
-                StreamReader read = new StreamReader(File.OpenRead(ofd.FileName));
-                metroTextBox1.Text = read.ReadToEnd();
-                read.Dispose();
+                List<multiSet> readMultiset = File.ReadAllLines(ofd.FileName)
+                                           .Select(v => multiSet.FromCsv(v))
+                                           .ToList();
+                bool withZero = false;
+
+                if ((readMultiset != null) && (readMultiset.Count != 0))
+                {
+                    firstGrid.DataSource = readMultiset;
+
+                    withZero = readMultiset.Any(x => x.elementOfmultiSet == 0);
+                }
+                else
+                {
+                    MessageBox.Show("Multizbiór pusty.\nWybierz inny plik źródłowy");
+                }
+
+                if (withZero)
+                {
+                    infoLabel.Visible = true;
+                    instanceMultiset.AddRange(readMultiset);
+                    instanceMultiset.RemoveAll(d => d.elementOfmultiSet == 0);
+                    secondGrid.DataSource = instanceMultiset;
+                }
+                
+               
             }
 
         }

@@ -68,7 +68,7 @@ namespace ZP_Max_PDP
             ButtonCreateMultiset.Enabled = false;
 
             //create multiset / generate all distances
-            createdMultiset.AddRange(createdMap);
+            createdMultiset.AddRange(createdMap); // copy
             for (int i = 0; i < createdMap.Count; i++)
             {
                 sum = createdMap[i].elementOfmultiSet;
@@ -106,27 +106,11 @@ namespace ZP_Max_PDP
             {
                 foreach (var item in createdMultiset)
                 {
-                    file.WriteLine(item.elementOfmultiSet);
+                    file.WriteLine(item.elementOfmultiSet + ",");
                 }
             }
+            SaveButton.Text = "✔️ Zapisano";
             SaveButton.Enabled = false;
-        }
-
-        // Helpers
-
-        public class multiSet
-        {
-            public int elementOfmultiSet { get; set; }
-
-            public multiSet()
-            {
-                this.elementOfmultiSet = elementOfmultiSet;
-            }
-
-            public multiSet(int value)
-            {
-                this.elementOfmultiSet = value;
-            }
         }
 
         private void addDeleteButton(MetroFramework.Controls.MetroGrid Grid)
@@ -155,7 +139,7 @@ namespace ZP_Max_PDP
 
             if (index >= createdMap.Count)
             {
-                MessageBox.Show("Index nie może być większy niż max index." + "\n" + "Aby dodać element na końcu zbioru wpisz index: -1 ");
+                MessageBox.Show("Index nie może być większy niż max index: " + (createdMap.Count-1).ToString() + ".\n" + "Aby dodać element na końcu zbioru wpisz index: -1 ");
             }
             else if (index == -1)
             {
@@ -184,7 +168,7 @@ namespace ZP_Max_PDP
 
             if (index >= createdMultiset.Count)
             {
-                MessageBox.Show("Index nie może być większy niż max index." + "\n" + "Aby dodać element na końcu zbioru wpisz index: -1 ");
+                MessageBox.Show("Index nie może być większy niż max index: " + (createdMultiset.Count-1).ToString() + ".\n" + "Aby dodać element na końcu zbioru wpisz index: -1 ");
             }
             else if (index == -1)
             {
@@ -211,7 +195,7 @@ namespace ZP_Max_PDP
             }
             if (mistakes > createdMultiset.Count)
             {
-                MessageBox.Show("Nie można wstawić więcej błędów niż liczba elementów" + "\n");
+                MessageBox.Show("Nie można wstawić więcej błędów niż liczba elementów: " + createdMultiset.Count.ToString() + "\n");
             }
             else
             {
