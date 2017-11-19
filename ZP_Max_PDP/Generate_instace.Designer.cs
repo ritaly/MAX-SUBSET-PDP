@@ -103,6 +103,11 @@
             this.NumElements.Cursor = System.Windows.Forms.Cursors.Hand;
             this.NumElements.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.NumElements.Location = new System.Drawing.Point(263, 91);
+            this.NumElements.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.NumElements.Name = "NumElements";
             this.NumElements.Size = new System.Drawing.Size(77, 23);
             this.NumElements.TabIndex = 1;
@@ -166,6 +171,11 @@
             this.NumRangeEnd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.NumRangeEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.NumRangeEnd.Location = new System.Drawing.Point(285, 139);
+            this.NumRangeEnd.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.NumRangeEnd.Minimum = new decimal(new int[] {
             2,
             0,
@@ -435,6 +445,11 @@
             this.addMapIndex.Cursor = System.Windows.Forms.Cursors.Hand;
             this.addMapIndex.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.addMapIndex.Location = new System.Drawing.Point(762, 144);
+            this.addMapIndex.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.addMapIndex.Minimum = new decimal(new int[] {
             1,
             0,
@@ -618,6 +633,11 @@
             this.addMultiIndex.Cursor = System.Windows.Forms.Cursors.Hand;
             this.addMultiIndex.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.addMultiIndex.Location = new System.Drawing.Point(762, 351);
+            this.addMultiIndex.Maximum = new decimal(new int[] {
+            50000,
+            0,
+            0,
+            0});
             this.addMultiIndex.Minimum = new decimal(new int[] {
             1,
             0,

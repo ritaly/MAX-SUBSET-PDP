@@ -64,6 +64,7 @@
             this.fileName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.fileName.CustomButton.UseSelectable = true;
             this.fileName.CustomButton.Visible = false;
+            this.fileName.Enabled = false;
             this.fileName.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.fileName.ForeColor = System.Drawing.SystemColors.ControlText;
             this.fileName.Lines = new string[] {

@@ -12,108 +12,151 @@ namespace ZP_Max_PDP
 {
     public partial class Algo1 : MetroFramework.Controls.MetroUserControl
     {
-        private List<multiSet> _multiset;
-        
+        private List<int> _multiset;
+        private List<multiSet> _solution;
 
         public Algo1(List<multiSet> fromMultiset)
         {
-            _multiset = fromMultiset;
+            _multiset = new List<int>(); // przechowuje kopię multizbioru jako listę intów,  anie obiektów
+            foreach (multiSet o in fromMultiset)
+            {
+                _multiset.Add(item: o.elementOfmultiSet);
+            }
+
             InitializeComponent();
         }
 
-        private void startClimbing_Click(object sender, EventArgs e) 
+        private void Algo1_Load(object sender, EventArgs e)
         {
-           // List<multiSet> currentSolution = new List<multiSet>();
-            int minValue = 0;
-            int maxValue = _multiset.Count;
-            int restarts = Convert.ToInt32(rangeRestart.Value);
-            Random randomValue = new Random();
-            List<int> bestSolution = new List<int>(); //tu bdzie najlepsze w danym restarcie
-
-            while (restarts!=0)
-            {
-                List<int> actualSolution = new List<int>();
-                List<multiSet> possibleItems = new List<multiSet>(_multiset);
-                
-                bool[] deleted = Enumerable.Repeat(false, possibleItems.Count).ToArray();
-                int id = randomValue.Next(minValue: minValue, maxValue: maxValue); // actual max value id
-                int max = possibleItems[id].elementOfmultiSet;
-                deleted[id] = true;
-                actualSolution.Add(max);
-
-                int prev;
-                int next;
-                int prev_id = (id == 0) ? -1 : FindPrevious(id - 1, deleted);
-                int next_id = (id == deleted.Count()-1) ? -1 : FindNext(id, deleted);
-                
-                if (prev_id == -1)
-                {
-                    prev = -1;
-                }
-                else
-                {
-                    prev = possibleItems[prev_id].elementOfmultiSet;
-                }
-
-                if (next_id == -1)
-                {
-                    next = -1;
-                }
-                else
-                {
-                    next = possibleItems[next_id].elementOfmultiSet;
-                }
-
-
-               
-                 //tutaj funkcja  muszę pamiętać, którego sąsiada mam, albo zamiast tego wywołujemy 
-                 //funkcję zwracającą wynik jeśli tak to nie muszę mieć  prev czy next
-                
-
-                
-               /* int prev = possibleItems[id - 1].elementOfmultiSet;
-                int next = possibleItems[id + 1].elementOfmultiSet;
-                int neighbor_id = (prev > next) ? (id - 1) : (id + 1);
-                int neighbor = possibleItems[neighbor_id].elementOfmultiSet; ;
-
-                if (max > neighbor)
-                {
-                    restarts++;
-                    break;
-                }
-                else
-                {
-                    actualSolution.Add(neighbor);
-                    List<int> actualMultiset = new List<int>(actualSolution);
-
-                    for (int i = 0; i < actualSolution.Count; i++ )
-                    {
-                        MessageBox.Show("jestem!");
-                        foreach (int item in actualSolution.Skip(i + 1).ToList())
-                        {
-                            actualMultiset.Add(Math.Abs(actualSolution[i] - item));
-                        }
-                    }
-
-                    
-                }*/
-
-                progressBar.Value +=1;
-                progressBar.Update();
-                
-            }
-            MessageBox.Show("I'm out");
+            progressBar.Minimum = 0;
+            sizeElements.Text = _multiset.Count().ToString();
         }
 
-        public int FindPrevious(int start, bool []deleted)
+        List<int> bestSolution = new List<int>(); //tu bedzie najlepsze
+        List<int> currentSolution; //najlepsze w danym restarcie  
+        bool[] is_deleted;
+
+        private void startClimbing_Click(object sender, EventArgs e)
+        {
+            progressBar.Visible = true;
+            progressBar.Value = progressBar.Minimum;
+            progressBar.Maximum = Convert.ToInt32(rangeRestart.Value);
+
+            System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew(); //start zegara 
+            var restarts_time = 0.0; // zegar dla poszczególnych restartów
+
+            int minValue = 0;
+            int maxValue = _multiset.Count;
+            int restarts = Convert.ToInt32(rangeRestart.Value) + 1;
+            Random randomValue = new Random();
+
+
+            while (restarts != 0)
+            {
+                System.Diagnostics.Stopwatch restart_timer = System.Diagnostics.Stopwatch.StartNew();
+                currentSolution = new List<int>();
+                is_deleted = Enumerable.Repeat(false, _multiset.Count).ToArray();
+                int id = randomValue.Next(minValue: minValue, maxValue: maxValue); // first max value id
+                int x = _multiset[id];
+                //MessageBox.Show(String.Join(" ", _multiset));
+                bool is_end = false;
+                is_end = FindSolution(x, id, currentSolution);
+
+                if (is_end)
+                {
+                    //MessageBox.Show("here");
+                    restarts--;
+                }
+                progressBar.Value += 1;
+                progressBar.Update();
+                restart_timer.Stop();
+                restarts_time += restart_timer.ElapsedMilliseconds;
+                timerLabel.Text = (restarts_time * 0.001).ToString();
+                timerLabel.Update();
+                //MessageBox.Show(String.Join(" ", bestSolution));
+            }
+            stopwatch.Stop();
+            progressBar.Value += 1;
+            timerLabel.Text = (stopwatch.ElapsedMilliseconds * 0.001).ToString();
+            MessageBox.Show("Skończone");
+            sizeSolution.Text = bestSolution.Count().ToString();
+            solution_Grid.Visible = true;
+
+            _solution = new List<multiSet>();
+
+            foreach (int o in bestSolution)
+            {
+                _solution.Add(new multiSet { elementOfmultiSet = o });
+            }
+            solution_Grid.DataSource = _solution;
+        }
+
+        public bool FindSolution(int x, int id, List<int> current)
+        {
+            int max = x;
+            current.Add(x);
+
+            //wygeneruj mozliwe odległości
+            List<int> current_multiset = new List<int>(current);
+            for (int i = 0; i < current.Count; i++)
+            {
+                foreach (int item in current.Skip(i + 1).ToList())
+                {
+                    current_multiset.Add(Math.Abs(current[i] - item));
+                }
+            }
+            bool is_valid = CanBeSolution(current_multiset);
+
+            if (!is_valid)
+            {
+                return true;
+            }
+
+            is_deleted[id] = true;
+
+            int neighbor_id = FindNeighbor(id);
+
+            if (_multiset[neighbor_id] > max)
+            {
+                //nowy max
+                bestSolution = (current.Count >= bestSolution.Count) ? current : bestSolution;
+                x = _multiset[neighbor_id];
+                return FindSolution(x, neighbor_id, current);
+            }
+            else
+            {
+                //jednak mniejsze lub równe to nie szukamy dalej
+                bestSolution = (current.Count > bestSolution.Count) ? current : bestSolution;
+                return true;
+            }
+
+        }
+
+        public bool CanBeSolution(List<int> current_multiset)
+        {
+            //string s = "restart " + restarts + "zawartosc: " + String.Join(",", current_multiset) + "\n" + String.Join(",", _multiset) + " \n" + !current_multiset.Except(_multiset).Any();
+            //MessageBox.Show(s);
+            return !current_multiset.Except(_multiset).Any();
+        }
+
+        public int FindNeighbor(int id)
+        {
+            int prev_id = (id == 0) ? id : FindPrevious(id, is_deleted);
+            int next_id = (id == _multiset.Count() - 1) ? id : FindNext(id, is_deleted);
+            int prev = _multiset[prev_id];
+            int next = _multiset[next_id];
+            int neighbor_id = (prev > next) ? prev_id : next_id;
+            return neighbor_id;
+        }
+
+        public int FindPrevious(int start, bool[] deleted)
         {
             int i = start;
-            while (i >= 0)
+            while (i > 0)
             {
-                Console.WriteLine(i);
                 if (deleted[i])
                 {
-                    i--;   
+                    i--;
                 }
                 else
                 {
@@ -121,9 +164,8 @@ namespace ZP_Max_PDP
                 }
             }
             return i;
-            
         }
-        public int FindNext(int start, bool []deleted)
+        public int FindNext(int start, bool[] deleted)
         {
             int i = start;
             while (i < deleted.Count())
@@ -137,14 +179,9 @@ namespace ZP_Max_PDP
                     break;
                 }
             }
+            i = (i != deleted.Count()) ? i : start;
             return i;
         }
 
-        private void Algo1_Load(object sender, EventArgs e)
-        {
-            progressBar.Value = 0;
-            progressBar.Minimum = 0;
-            progressBar.Maximum = Convert.ToInt32(rangeRestart.Value); 
-        }
     }
 }
