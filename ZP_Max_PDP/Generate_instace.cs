@@ -102,6 +102,7 @@ namespace ZP_Max_PDP
             string path = Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName;
             path = Path.Combine(path, "Instance");
             string filePath = path + name + format;
+            createdMultiset = createdMultiset.OrderBy(a => Guid.NewGuid()).ToList();
             using (var file = File.CreateText(filePath))
             {
                 foreach (var item in createdMultiset)
