@@ -137,7 +137,9 @@ namespace ZP_Max_PDP
 
         public bool CanBeSolution(List<int> currentMultiset)
         {
-            return !currentMultiset.Except(_multiset).Any();
+            string s = "current: " + String.Join(" ", currentMultiset) + "\n M: " + String.Join(" ", _multiset) + "\n " + (!currentMultiset.Except(_multiset).Any()).ToString();
+            MessageBox.Show(s);
+            return !currentMultiset.Except(_multiset).Any(); // z wyjątkiem tego co w multizbiorze
         }
 
         public int FindNeighbor(int id)
