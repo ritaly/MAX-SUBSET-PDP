@@ -13,7 +13,7 @@
 ### Instance generator: ###
 Main data structure: List<>  
 Displayed at:  DrawGridView  
-Save to: file.csv (grandparent directory _ZP_Max_PDP\ZP_Max_PDP\Instance_)  
+Save to: file.csv (grandparent directory _MAX-SUBSET-PDP\ZP_Max_PDP\Instance_)  
 Pessimistic computational complexity: O(n2)  
 
 ### Read from file  
