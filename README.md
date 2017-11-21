@@ -13,9 +13,15 @@
 ### Instance generator: ###
 Main data structure: List<>  
 Displayed at:  DrawGridView  
-Save to: file.csv (grandparent directory)  
-Pessimistic computational complexity: O(n2)
+Save to: file.csv (grandparent directory _ZP_Max_PDP\ZP_Max_PDP\Instance_)  
+Pessimistic computational complexity: O(n2)  
 
 ### Read from file  
 CSV files  
-With mistakes
+With mistakes  
+
+### Preliminary algorithm  
+Hill-Climbing algorithm with restarts parameter  
+
+### Main algorithm  
+Tabu Search implementation with preliminary solution from hill-climbing
