@@ -98,3 +98,4 @@ C:\Users\Rita\Desktop\doc\ZP_Max_PDP\ZP_Max_PDP\obj\Debug\ZP_Max_PDP.csproj.Gene
 C:\Users\Rita\Desktop\doc\ZP_Max_PDP\ZP_Max_PDP\obj\Debug\ZP_Max_PDP.csproj.CoreCompileInputs.cache
 C:\Users\Rita\Desktop\doc\ZP_Max_PDP\ZP_Max_PDP\obj\Debug\ZP_Max_PDP.exe
 C:\Users\Rita\Desktop\doc\ZP_Max_PDP\ZP_Max_PDP\obj\Debug\ZP_Max_PDP.pdb
+C:\Users\Rita\Documents\ZP_Max_PDP\ZP_Max_PDP\obj\Debug\ZP_Max_PDP.Algo2.resources

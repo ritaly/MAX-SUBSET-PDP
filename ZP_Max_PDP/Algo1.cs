@@ -11,14 +11,16 @@ using System.Windows.Forms;
 namespace ZP_Max_PDP
 {
     public partial class Algo1 : MetroFramework.Controls.MetroUserControl
-    {
+    {   //HillClimbing
         private List<int> _multiset;
+        private List<multiSet> loadedMultiset;
         private List<multiSet> finalSolution;
 
-        public Algo1(List<multiSet> fromMultiset)
+        public Algo1(List<multiSet> loadedMultiset)
         {
+            this.loadedMultiset = loadedMultiset;
             _multiset = new List<int>(); // przechowuje kopię multizbioru jako listę intów,  anie obiektów
-            foreach (multiSet o in fromMultiset)
+            foreach (multiSet o in loadedMultiset)
             {
                 _multiset.Add(item: o.elementOfmultiSet);
             }
@@ -32,9 +34,10 @@ namespace ZP_Max_PDP
             sizeElements.Text = _multiset.Count().ToString();
         }
 
-        private List<int> bestSolution = new List<int>(); //tu bedzie najlepsze
-        
-        List<int> currentSolution; //najlepsze w danym restarcie  
+        List<int> bestSolution = new List<int>(); //tu bedzie najlepsze
+        List<int> bestSolutionIds = new List<int>();
+        List<int> currentSolution; //najlepsze w danym restarcie 
+        List<int> currentSolutionIds;
         bool[] isDeleted;
 
         private void startClimbing_Click(object sender, EventArgs e)
@@ -55,16 +58,19 @@ namespace ZP_Max_PDP
                 System.Diagnostics.Stopwatch restartTimer = System.Diagnostics.Stopwatch.StartNew();
 
                 currentSolution = new List<int>();
+                currentSolutionIds = new List<int>();
                 isDeleted = Enumerable.Repeat(false, _multiset.Count).ToArray();
                 int idx = randomValue.Next(minValue: minValue, maxValue: maxValue); // first max value id
                 int x = _multiset[idx];
                 bool isEnd = false;
-                isEnd = FindSolution(x, idx, currentSolution);
+                isEnd = FindSolution(x, idx, currentSolution, currentSolutionIds);
 
                 if (isEnd)
                 {
                     bestSolution = (currentSolution.Count > bestSolution.Count) ? currentSolution : bestSolution;
+                    bestSolutionIds = (currentSolutionIds.Count > bestSolutionIds.Count) ? currentSolutionIds : bestSolutionIds;
                     sizeSolution.Text = bestSolution.Count().ToString();
+                    sizeSolution.Update();
                     restarts--;
                 }
 
@@ -81,21 +87,22 @@ namespace ZP_Max_PDP
             timerLabel.Text = (globalTimer.ElapsedMilliseconds * 0.001).ToString();
             MessageBox.Show("Skończone");
             sizeSolution.Text = bestSolution.Count().ToString();
-            solution_Grid.Visible = true;
+            solutionGrid.Visible = true;
 
             finalSolution = new List<multiSet>();
-
+            MessageBox.Show("Ids: " + String.Join(" ", bestSolutionIds));
             foreach (int o in bestSolution)
             {
                 finalSolution.Add(new multiSet { elementOfmultiSet = o });
             }
-            solution_Grid.DataSource = finalSolution;
+            solutionGrid.DataSource = finalSolution;
         }
 
-        public bool FindSolution(int x, int id, List<int> current)
+        public bool FindSolution(int x, int id, List<int> current, List<int> currentIds)
         {
             int max = x;
             current.Add(x);
+            currentIds.Add(id);
 
             //wygeneruj mozliwe odległości
             List<int> currentMultiset = new List<int>(current);
@@ -110,6 +117,7 @@ namespace ZP_Max_PDP
 
             if (!is_valid)
             {
+                currentIds.RemoveAt(currentIds.Count - 1);
                 current.RemoveAt(current.Count - 1);
                 return true;
             }
@@ -118,17 +126,16 @@ namespace ZP_Max_PDP
                 isDeleted[id] = true;
                 int neighborId = FindNeighbor(id);
                 currentSolution = current;
-                
+                currentSolutionIds = currentIds;
                 if (_multiset[neighborId] > max)
                 {
                     //nowy max
                     x = _multiset[neighborId];
-                    return FindSolution(x, neighborId, current);
+                    return FindSolution(x, neighborId, current, currentIds);
                 }
                 else
                 {
                     //jednak mniejsze lub równe to nie szukamy dalej
-                    currentSolution = current;
                     return true;
                 }
             }
@@ -138,7 +145,7 @@ namespace ZP_Max_PDP
         public bool CanBeSolution(List<int> currentMultiset)
         {
             string s = "current: " + String.Join(" ", currentMultiset) + "\n M: " + String.Join(" ", _multiset) + "\n " + (!currentMultiset.Except(_multiset).Any()).ToString();
-            MessageBox.Show(s);
+            //MessageBox.Show(s);
             return !currentMultiset.Except(_multiset).Any(); // z wyjątkiem tego co w multizbiorze
         }
 
@@ -184,6 +191,18 @@ namespace ZP_Max_PDP
             }
             i = (i != deleted.Count()) ? i : start;
             return i;
+        }
+
+        private void NextButton_Click(object sender, EventArgs e)
+        {
+            if (!StartForm.Instance.MetroContainer.Controls.ContainsKey("Algo2"))
+            {
+                Algo2 li = new Algo2(loadedMultiset);
+                li.Dock = DockStyle.Fill;
+                StartForm.Instance.MetroContainer.Controls.Add(li);
+            }
+            StartForm.Instance.MetroContainer.Controls["Algo2"].BringToFront();
+            StartForm.Instance.ButtonBack.Visible = true;
         }
 
     }

@@ -59,6 +59,12 @@
     <Compile Include="Algo1.Designer.cs">
       <DependentUpon>Algo1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Algo2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Algo2.Designer.cs">
+      <DependentUpon>Algo2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Generate_instace.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -88,6 +94,9 @@
     </Compile>
     <EmbeddedResource Include="Algo1.resx">
       <DependentUpon>Algo1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Algo2.resx">
+      <DependentUpon>Algo2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Generate_instace.resx">
       <DependentUpon>Generate_instace.cs</DependentUpon>
