@@ -13,14 +13,14 @@ namespace ZP_Max_PDP
     public partial class Algo1 : MetroFramework.Controls.MetroUserControl
     {   //HillClimbing
         private List<int> _multiset;
-        private List<multiSet> loadedMultiset;
+        private List<multiSet> instanceMultiset;
         private List<multiSet> finalSolution;
 
-        public Algo1(List<multiSet> loadedMultiset)
+        public Algo1(List<multiSet> instanceMultiset)
         {
-            this.loadedMultiset = loadedMultiset;
+            this.instanceMultiset = instanceMultiset;
             _multiset = new List<int>(); // przechowuje kopię multizbioru jako listę intów,  anie obiektów
-            foreach (multiSet o in loadedMultiset)
+            foreach (multiSet o in instanceMultiset)
             {
                 _multiset.Add(item: o.elementOfmultiSet);
             }
@@ -88,14 +88,14 @@ namespace ZP_Max_PDP
             MessageBox.Show("Skończone");
             sizeSolution.Text = bestSolution.Count().ToString();
             solutionGrid.Visible = true;
-
             finalSolution = new List<multiSet>();
-            MessageBox.Show("Ids: " + String.Join(" ", bestSolutionIds));
+            //MessageBox.Show("Ids: " + String.Join(" ", bestSolutionIds));
             foreach (int o in bestSolution)
             {
                 finalSolution.Add(new multiSet { elementOfmultiSet = o });
             }
             solutionGrid.DataSource = finalSolution;
+            NextButton.Visible = true;
         }
 
         public bool FindSolution(int x, int id, List<int> current, List<int> currentIds)
@@ -197,7 +197,7 @@ namespace ZP_Max_PDP
         {
             if (!StartForm.Instance.MetroContainer.Controls.ContainsKey("Algo2"))
             {
-                Algo2 li = new Algo2(loadedMultiset);
+                Algo2 li = new Algo2(instanceMultiset, bestSolutionIds);
                 li.Dock = DockStyle.Fill;
                 StartForm.Instance.MetroContainer.Controls.Add(li);
             }
