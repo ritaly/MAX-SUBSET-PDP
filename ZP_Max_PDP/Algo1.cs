@@ -85,7 +85,7 @@ namespace ZP_Max_PDP
             globalTimer.Stop();
             progressBar.Value += 1;
             timerLabel.Text = (globalTimer.ElapsedMilliseconds * 0.001).ToString();
-            MessageBox.Show("Skończone");
+            //MessageBox.Show("Skończone");
             sizeSolution.Text = bestSolution.Count().ToString();
             solutionGrid.Visible = true;
             finalSolution = new List<multiSet>();
@@ -94,6 +94,7 @@ namespace ZP_Max_PDP
             {
                 finalSolution.Add(new multiSet { elementOfmultiSet = o });
             }
+            solutionGrid.Update();//?
             solutionGrid.DataSource = finalSolution;
             NextButton.Visible = true;
         }
@@ -144,9 +145,9 @@ namespace ZP_Max_PDP
 
         public bool CanBeSolution(List<int> currentMultiset)
         {
-            string s = "current: " + String.Join(" ", currentMultiset) + "\n M: " + String.Join(" ", _multiset) + "\n " + (!currentMultiset.Except(_multiset).Any()).ToString();
+           // string s = "current: " + String.Join(" ", currentMultiset) + "\n M: " + String.Join(" ", _multiset) + "\n " + (!currentMultiset.Except(_multiset).Any()).ToString();
             //MessageBox.Show(s);
-            return !currentMultiset.Except(_multiset).Any(); // z wyjątkiem tego co w multizbiorze
+            return currentMultiset.All(_multiset.Contains); // z wyjątkiem tego co w multizbiorze
         }
 
         public int FindNeighbor(int id)

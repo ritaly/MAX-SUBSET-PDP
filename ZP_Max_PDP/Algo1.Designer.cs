@@ -108,7 +108,7 @@
             this.rangeRestart.TabIndex = 38;
             this.rangeRestart.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.rangeRestart.Value = new decimal(new int[] {
-            500,
+            5,
             0,
             0,
             0});
