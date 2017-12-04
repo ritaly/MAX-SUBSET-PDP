@@ -26,7 +26,7 @@ Hill-Climbing algorithm with restarts parameter
 ### Main algorithm  
 Tabu Search implementation with preliminary solution from hill-climbing  
   
-  parameters:
+  parameters to change:
   * restarts number
   * iterations number
   * size of the tabu list 

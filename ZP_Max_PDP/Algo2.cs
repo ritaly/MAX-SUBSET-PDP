@@ -157,20 +157,19 @@ namespace ZP_Max_PDP
         // ------------- MAKE MOVE TABU -------------
         public void MakeMove(int idx, int idc, List<int> candidats)
         {
-            bool is_valid = false; //switch move
+            bool is_valid = false; 
 
             // ------------- ADD ELEMENT -------------
             foreach (int candidat in candidats)
             {
-                currentBestIds.Add(candidat); //dla kazdego kandydata - dodaj 
+                currentBestIds.Add(candidat); //add candidat
+
                 // ------------- generate multiset from ids -------------
-                List<int> currentMultiset = new List<int>(); //wygeneruj multiset 
+                List<int> currentMultiset = new List<int>(); 
                 foreach (int i in currentBestIds)
                 {
                     currentMultiset.Add(_multiset[i]);
                 }
-                //string s = "kandydat : " + _multiset[candidat].ToString() + "\n";
-
                 for (int i = 0; i < currentBestIds.Count; i++)
                 {
                     int index = currentBestIds[i];
@@ -180,10 +179,9 @@ namespace ZP_Max_PDP
                     }
                 }
                 is_valid = CanBeSolution(currentMultiset);
-               // s += "\n koniec : " + String.Join(",", currentBestIds.Select(x => _multiset[x])) + "\n";
-               // s += "currentBestIds: " + String.Join(" ", currentBestIds).ToString() + "\n Multi: "+ String.Join("-", currentMultiset) + "\n M:" +  String.Join(" ", _multiset) + "\n" + is_valid.ToString();
-               // MessageBox.Show(s);
-                if (!is_valid) //jak nie pasuje to usun ostatnio dodany
+                //currentBestIds.Select(x => _multiset[x])) 
+
+                if (!is_valid) //invalid remove
                 {
                     currentBestIds.RemoveAt(currentBestIds.Count - 1);
                 }
@@ -193,7 +191,6 @@ namespace ZP_Max_PDP
                     restartBestIds = (currentBestIds.Count > restartBestIds.Count) ? currentBestIds : restartBestIds;
                     break;
                 }
-                
             }
             // ------------- SWAP ELEMENT -------------
             if (!is_valid)
@@ -201,7 +198,8 @@ namespace ZP_Max_PDP
                 foreach (int candidat in candidats)
                 {
                     currentBestIds[idc] = candidat; // swap idx <=> candidat
-                    List<int> currentMultiset = new List<int>(); //wygeneruj multiset 
+                    // ------------- generate multiset from ids -------------
+                    List<int> currentMultiset = new List<int>(); 
                     foreach (int i in currentBestIds)
                     {
                         currentMultiset.Add(_multiset[i]);
@@ -216,7 +214,7 @@ namespace ZP_Max_PDP
                         }
                     }
                     is_valid = CanBeSolution(currentMultiset);
-                    if (!is_valid) //jak nie pasuje to wroc
+                    if (!is_valid) //recover last structure
                     {
                         currentBestIds[idc] = idx; // swap idx <=> candidat
                     }
@@ -229,15 +227,11 @@ namespace ZP_Max_PDP
             }
 
             // ------------- REMOVE ELEMENT -------------
-            if (!is_valid) //jak nie da się dodac to usun
+            if (!is_valid)
             {
                 currentBestIds.RemoveAll(i => i == idx );  //--- structure update --
                 
             }
-            // string t ="current: " + String.Join(" ", currentBestIds) +"\n bestids: " + String.Join(" ", restartBestIds) ;
-            //string t = "koniec : " + String.Join(",", currentBestIds.Select(x => _multiset[x]));
-            //t += "\n valid?" + is_valid.ToString();
-            //MessageBox.Show(t);
         }
 
         public bool CanBeSolution(List<int> currentMultiset)
@@ -252,9 +246,8 @@ namespace ZP_Max_PDP
             int maxValue = currentBestIds.Count;
             int value = randomValue.Next(minValue: minValue, maxValue: maxValue);
             int index = currentBestIds[value];
-            if (tabuList.Any(k => k[0] == index))// to id czy na liście tabu
+            if (tabuList.Any(k => k[0] == index)) // is index on tabu list now?
             {
-
                  RandElementToMove();
             }
             return value;
@@ -294,7 +287,7 @@ namespace ZP_Max_PDP
             int i = start;
             while (i > 0)
             {
-                if (tabuList.Any(k => k[0] == i) || currentBestIds.Contains(i)) // czy usunięte to teraz czy na liście tabu lub w rozwiązaniu
+                if (tabuList.Any(k => k[0] == i) || currentBestIds.Contains(i)) // is index on tabu list or in current solution now?
                 {
                     i--;
                 }
@@ -326,7 +319,7 @@ namespace ZP_Max_PDP
         // ------------- REINITIAL WITH HILLCLIMBING -------------
         public void GenerateNewInitialSolution()
         {
-            //return initialSolutionIds! wspinaczka
+            //return initialSolutionIds! hillclimbing
             int minValue = 0;
             int maxValue = _multiset.Count;
             int idx = randomValue.Next(minValue: minValue, maxValue: maxValue);
@@ -346,7 +339,7 @@ namespace ZP_Max_PDP
         {
             initialSolutionIds.Add(idx);
             // ------------- generate multiset from ids -------------
-            List<int> currentMultiset = new List<int>(); //wygeneruj multiset 
+            List<int> currentMultiset = new List<int>();
             foreach (int i in initialSolutionIds)
             {
                 currentMultiset.Add(_multiset[i]);
@@ -371,7 +364,7 @@ namespace ZP_Max_PDP
                 int neighborId = FindNeighbor(idx);
                 if (_multiset[neighborId] > _multiset[idx])
                 {
-                    //nowy max
+                    //new max
                     return HillClimbing(neighborId);
                 }
                 else
@@ -430,6 +423,11 @@ namespace ZP_Max_PDP
             isSquare = (int)Math.Sqrt(isSquare);
             int max = (int)(1 + isSquare) / 2;
             return max;
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            //test
         }
     }
 }

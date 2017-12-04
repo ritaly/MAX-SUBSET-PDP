@@ -19,7 +19,7 @@ namespace ZP_Max_PDP
         public Algo1(List<multiSet> instanceMultiset)
         {
             this.instanceMultiset = instanceMultiset;
-            _multiset = new List<int>(); // przechowuje kopię multizbioru jako listę intów,  anie obiektów
+            _multiset = new List<int>(); // copy multiset as int list
             foreach (multiSet o in instanceMultiset)
             {
                 _multiset.Add(item: o.elementOfmultiSet);
@@ -34,9 +34,9 @@ namespace ZP_Max_PDP
             sizeElements.Text = _multiset.Count().ToString();
         }
 
-        List<int> bestSolution = new List<int>(); //tu bedzie najlepsze
+        List<int> bestSolution = new List<int>(); 
         List<int> bestSolutionIds = new List<int>();
-        List<int> currentSolution; //najlepsze w danym restarcie 
+        List<int> currentSolution; //best in restart
         List<int> currentSolutionIds;
         bool[] isDeleted;
 
@@ -48,11 +48,11 @@ namespace ZP_Max_PDP
             int minValue = 0;
             int maxValue = _multiset.Count;
             int restarts = Convert.ToInt32(rangeRestart.Value) + 1;
-            double partialTime = 0.0; // zegar dla poszczególnych restartów
+            double partialTime = 0.0; //timer for each restart
 
             Random randomValue = new Random();
 
-            System.Diagnostics.Stopwatch globalTimer = System.Diagnostics.Stopwatch.StartNew(); //start zegara 
+            System.Diagnostics.Stopwatch globalTimer = System.Diagnostics.Stopwatch.StartNew(); 
             while (restarts != 0)
             {
                 System.Diagnostics.Stopwatch restartTimer = System.Diagnostics.Stopwatch.StartNew();
@@ -85,16 +85,14 @@ namespace ZP_Max_PDP
             globalTimer.Stop();
             progressBar.Value += 1;
             timerLabel.Text = (globalTimer.ElapsedMilliseconds * 0.001).ToString();
-            //MessageBox.Show("Skończone");
             sizeSolution.Text = bestSolution.Count().ToString();
             solutionGrid.Visible = true;
             finalSolution = new List<multiSet>();
-            //MessageBox.Show("Ids: " + String.Join(" ", bestSolutionIds));
             foreach (int o in bestSolution)
             {
                 finalSolution.Add(new multiSet { elementOfmultiSet = o });
             }
-            solutionGrid.Update();//?
+            solutionGrid.Update();
             solutionGrid.DataSource = finalSolution;
             NextButton.Visible = true;
         }
@@ -105,7 +103,7 @@ namespace ZP_Max_PDP
             current.Add(x);
             currentIds.Add(id);
 
-            //wygeneruj mozliwe odległości
+            //all distances
             List<int> currentMultiset = new List<int>(current);
             for (int i = 0; i < current.Count; i++)
             {
@@ -130,13 +128,13 @@ namespace ZP_Max_PDP
                 currentSolutionIds = currentIds;
                 if (_multiset[neighborId] > max)
                 {
-                    //nowy max
+                    //new max
                     x = _multiset[neighborId];
                     return FindSolution(x, neighborId, current, currentIds);
                 }
                 else
                 {
-                    //jednak mniejsze lub równe to nie szukamy dalej
+                    //if not greater stop searching
                     return true;
                 }
             }
@@ -145,9 +143,8 @@ namespace ZP_Max_PDP
 
         public bool CanBeSolution(List<int> currentMultiset)
         {
-           // string s = "current: " + String.Join(" ", currentMultiset) + "\n M: " + String.Join(" ", _multiset) + "\n " + (!currentMultiset.Except(_multiset).Any()).ToString();
-            //MessageBox.Show(s);
-            return currentMultiset.All(_multiset.Contains); // z wyjątkiem tego co w multizbiorze
+ 
+            return currentMultiset.All(_multiset.Contains);
         }
 
         public int FindNeighbor(int id)
