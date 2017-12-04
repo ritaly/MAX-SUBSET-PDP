@@ -73,10 +73,10 @@ namespace ZP_Max_PDP
             };
             this.tabTabuChart.Series.Add(ChartSolution);
             tabTabuChart.ChartAreas[0].AxisX.Maximum = (restarts * iterPerRestart);
-            tabTabuChart.ChartAreas[0].AxisY.Maximum = axisY+1;
+            tabTabuChart.ChartAreas[0].AxisY.Maximum = axisY;
             tabTabuChart.ChartAreas[0].AxisX.Interval = iterPerRestart;
-            tabTabuChart.ChartAreas[0].AxisX.Title = "Liczba elementów rozwiązania P (max M)";
-            tabTabuChart.ChartAreas[0].AxisY.Title = "Liczba iteracji";
+            tabTabuChart.ChartAreas[0].AxisY.Title = "Liczba elementów rozwiązania P (max M)";
+            tabTabuChart.ChartAreas[0].AxisX.Title = "Liczba iteracji";
 
             tabSolChart.Series.Clear();
             tabSolChart.Invalidate();
@@ -90,10 +90,10 @@ namespace ZP_Max_PDP
             };
             this.tabSolChart.Series.Add(ChartSolution2);
             tabSolChart.ChartAreas[0].AxisX.Maximum = (restarts * iterPerRestart);
-            tabSolChart.ChartAreas[0].AxisY.Maximum = axisY+1;
+            tabSolChart.ChartAreas[0].AxisY.Maximum = axisY;
             tabSolChart.ChartAreas[0].AxisX.Interval = iterPerRestart;
-            tabSolChart.ChartAreas[0].AxisX.Title = "Liczba elementów rozwiązania P (max M)";
-            tabSolChart.ChartAreas[0].AxisY.Title = "Liczba iteracji";
+            tabSolChart.ChartAreas[0].AxisY.Title = "Liczba elementów rozwiązania P (max M)";
+            tabSolChart.ChartAreas[0].AxisX.Title = "Liczba iteracji";
 
             while (restarts!=0) {
                if (restarts % 3 == 0)
