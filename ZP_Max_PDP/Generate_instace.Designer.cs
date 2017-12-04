@@ -66,11 +66,12 @@
             this.AddMultiLabel = new MetroFramework.Controls.MetroLabel();
             this.addMultiValue = new System.Windows.Forms.NumericUpDown();
             this.addMultiIndex = new System.Windows.Forms.NumericUpDown();
-            this.MistakesButton = new MetroFramework.Controls.MetroButton();
+            this.mistakesButton = new MetroFramework.Controls.MetroButton();
             this.Nlabel = new MetroFramework.Controls.MetroLabel();
             this.addMapToolTip = new MetroFramework.Components.MetroToolTip();
             this.NextButton = new MetroFramework.Controls.MetroButton();
-            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.addMultisetToolTip = new MetroFramework.Components.MetroToolTip();
+            this.mistakesToolTip = new MetroFramework.Components.MetroToolTip();
             ((System.ComponentModel.ISupportInitialize)(this.NumElements)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumRangeStart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumRangeEnd)).BeginInit();
@@ -539,7 +540,7 @@
             this.addMapButton.TabIndex = 23;
             this.addMapButton.Text = "Dodaj";
             this.addMapButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.addMapToolTip.SetToolTip(this.addMapButton, "Aby dodać element na koniec listy ustaw index -1");
+            this.mistakesToolTip.SetToolTip(this.addMapButton, "Aby dodać element na koniec listy ustaw index -1");
             this.addMapButton.UseCustomBackColor = true;
             this.addMapButton.UseCustomForeColor = true;
             this.addMapButton.UseSelectable = true;
@@ -583,6 +584,7 @@
             this.addMultiButton.TabIndex = 29;
             this.addMultiButton.Text = "Dodaj";
             this.addMultiButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.addMultisetToolTip.SetToolTip(this.addMultiButton, "Aby dodać element na koniec listy ustaw index -1");
             this.addMultiButton.UseCustomBackColor = true;
             this.addMultiButton.UseCustomForeColor = true;
             this.addMultiButton.UseSelectable = true;
@@ -654,24 +656,25 @@
             -2147483648});
             this.addMultiIndex.Visible = false;
             // 
-            // MistakesButton
+            // mistakesButton
             // 
-            this.MistakesButton.BackColor = System.Drawing.Color.Transparent;
-            this.MistakesButton.BackgroundImage = global::ZP_Max_PDP.Properties.Resources.plus;
-            this.MistakesButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.MistakesButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.MistakesButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.MistakesButton.Location = new System.Drawing.Point(912, 441);
-            this.MistakesButton.Name = "MistakesButton";
-            this.MistakesButton.Size = new System.Drawing.Size(69, 20);
-            this.MistakesButton.TabIndex = 32;
-            this.MistakesButton.Text = "Dodaj";
-            this.MistakesButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.MistakesButton.UseCustomBackColor = true;
-            this.MistakesButton.UseCustomForeColor = true;
-            this.MistakesButton.UseSelectable = true;
-            this.MistakesButton.Visible = false;
-            this.MistakesButton.Click += new System.EventHandler(this.MistakesButton_Click);
+            this.mistakesButton.BackColor = System.Drawing.Color.Transparent;
+            this.mistakesButton.BackgroundImage = global::ZP_Max_PDP.Properties.Resources.plus;
+            this.mistakesButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.mistakesButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.mistakesButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.mistakesButton.Location = new System.Drawing.Point(912, 441);
+            this.mistakesButton.Name = "mistakesButton";
+            this.mistakesButton.Size = new System.Drawing.Size(69, 20);
+            this.mistakesButton.TabIndex = 32;
+            this.mistakesButton.Text = "Dodaj";
+            this.mistakesButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.addMapToolTip.SetToolTip(this.mistakesButton, "Generuje błędy jako podmiana wartości z zakresu 1-100");
+            this.mistakesButton.UseCustomBackColor = true;
+            this.mistakesButton.UseCustomForeColor = true;
+            this.mistakesButton.UseSelectable = true;
+            this.mistakesButton.Visible = false;
+            this.mistakesButton.Click += new System.EventHandler(this.MistakesButton_Click);
             // 
             // Nlabel
             // 
@@ -706,24 +709,26 @@
             this.NextButton.Visible = false;
             this.NextButton.Click += new System.EventHandler(this.NextButton_Click);
             // 
-            // metroLabel3
+            // addMultisetToolTip
             // 
-            this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(562, 61);
-            this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(72, 19);
-            this.metroLabel3.TabIndex = 35;
-            this.metroLabel3.Text = "napraw to!";
+            this.addMultisetToolTip.Style = MetroFramework.MetroColorStyle.Blue;
+            this.addMultisetToolTip.StyleManager = null;
+            this.addMultisetToolTip.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
+            // mistakesToolTip
+            // 
+            this.mistakesToolTip.Style = MetroFramework.MetroColorStyle.Blue;
+            this.mistakesToolTip.StyleManager = null;
+            this.mistakesToolTip.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
             // Generate_instace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.Controls.Add(this.metroLabel3);
             this.Controls.Add(this.NextButton);
             this.Controls.Add(this.Nlabel);
-            this.Controls.Add(this.MistakesButton);
+            this.Controls.Add(this.mistakesButton);
             this.Controls.Add(this.addmultiv);
             this.Controls.Add(this.addmultiid);
             this.Controls.Add(this.addMultiButton);
@@ -802,10 +807,11 @@
         private MetroFramework.Controls.MetroLabel AddMultiLabel;
         private System.Windows.Forms.NumericUpDown addMultiValue;
         private System.Windows.Forms.NumericUpDown addMultiIndex;
-        private MetroFramework.Controls.MetroButton MistakesButton;
+        private MetroFramework.Controls.MetroButton mistakesButton;
         private MetroFramework.Controls.MetroLabel Nlabel;
         private MetroFramework.Components.MetroToolTip addMapToolTip;
         private MetroFramework.Controls.MetroButton NextButton;
-        private MetroFramework.Controls.MetroLabel metroLabel3;
+        private MetroFramework.Components.MetroToolTip addMultisetToolTip;
+        private MetroFramework.Components.MetroToolTip mistakesToolTip;
     }
 }

@@ -13,9 +13,10 @@ namespace ZP_Max_PDP
 {
     public partial class Generate_instace : MetroFramework.Controls.MetroUserControl
     {
-        private List<multiSet> createdMap = new List<multiSet>();
+        private BindingList<multiSet> createdMap = new BindingList<multiSet>();
         private List<multiSet> createdSolution = new List<multiSet>();
         private List<multiSet> createdMultiset = new List<multiSet>();
+        private BindingList<multiSet> gridMultiset; //temp created Solution
 
         public Generate_instace()
         {
@@ -36,7 +37,7 @@ namespace ZP_Max_PDP
                     createdMap.Add(new multiSet() { elementOfmultiSet = drawValue });
                 }
                 DrawGrid.DataSource = createdMap; //fill table
-                addDeleteButton(DrawGrid); //delete button via helper method
+                addDeleteButton(DrawGrid); //add delete buttons 
                 ButtonCreateInstance.Enabled = false;
                 ButtonCreateMultiset.Enabled = true;
                 EditDescription.Visible = true;
@@ -56,9 +57,9 @@ namespace ZP_Max_PDP
 
         private void ButtonCreateMultiset_Click(object sender, EventArgs e)
         {
-            // solution
+
             int sum = 0;
-            //createdSolution.Add(new multiSet() { elementOfmultiSet = 0 }); //pierwszy pkt to 0
+            // ------------- GENERATE SOLUTION -------------
             for (int i = 0; i < createdMap.Count; i++)
             {
                 sum = sum + createdMap[i].elementOfmultiSet;
@@ -78,7 +79,8 @@ namespace ZP_Max_PDP
                     createdMultiset.Add(item: new multiSet() { elementOfmultiSet = sum });
                 }
             }
-            MultisetGrid.DataSource = createdMultiset;
+            gridMultiset = new BindingList<multiSet>(createdMultiset);
+            MultisetGrid.DataSource = gridMultiset;
             addDeleteButton(MultisetGrid);
 
             // UI update
@@ -90,30 +92,12 @@ namespace ZP_Max_PDP
             addMultiButton.Visible = true;
 
             MistakesLabel.Visible = true;
-            MistakesButton.Visible = true;
+            mistakesButton.Visible = true;
             NumMistakes.Visible = true;
             SaveButton.Visible = true;
             NextButton.Visible = true;
         }
-        private void SaveButton_Click(object sender, EventArgs e)
-        {
-            string name = string.Format("\\instance-" + createdMap.Count.ToString() + "-{0:yyyy-MM-dd-hh-mm-ss-tt}", DateTime.Now);
-            string format = ".csv";
-            string path = Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName;
-            path = Path.Combine(path, "Instance");
-            string filePath = path + name + format;
-            createdMultiset = createdMultiset.OrderBy(a => Guid.NewGuid()).ToList();
-            using (var file = File.CreateText(filePath))
-            {
-                foreach (var item in createdMultiset)
-                {
-                    file.WriteLine(item.elementOfmultiSet + ",");
-                }
-            }
-            SaveButton.Text = "✔️ Zapisano";
-            SaveButton.Enabled = false;
-        }
-
+        
         private void addDeleteButton(MetroFramework.Controls.MetroGrid Grid)
         {
             Grid.Columns.Add(new DataGridViewImageColumn()
@@ -123,14 +107,18 @@ namespace ZP_Max_PDP
                 HeaderText = "delete"
             });
         }
-
+        // ------------- DELETE FROM GRID -------------
         private void DrawGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
+            {
                 return;
-
-            createdMap.RemoveAt(e.RowIndex);
-            DrawGrid.DataSource = createdMap.ToList();
+            }
+            if (e.ColumnIndex == 1)
+            {
+                createdMap.RemoveAt(e.RowIndex);
+                DrawGrid.Refresh();
+            }
         }
 
         private void addMapButton_Click(object sender, EventArgs e)
@@ -145,21 +133,26 @@ namespace ZP_Max_PDP
             else if (index == -1)
             {
                 createdMap.Add(new multiSet() { elementOfmultiSet = value });
-                DrawGrid.DataSource = createdMap.ToList();
+                DrawGrid.Refresh();
             }
             else
             {
                 createdMap.Insert(index, new multiSet() { elementOfmultiSet = value });
-                DrawGrid.DataSource = createdMap.ToList();
+                DrawGrid.Refresh();
             }
         }
-
+        // ------------- DELETE FROM GRID -------------
         private void MultisetGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
+            {
                 return;
-            createdMultiset.RemoveAt(e.RowIndex);
-            MultisetGrid.DataSource = createdMultiset.ToList();
+            }
+            if (e.ColumnIndex == 1)
+            {
+                gridMultiset.RemoveAt(e.RowIndex);
+                MultisetGrid.Refresh();
+            }
         }
 
         private void addMultiButton_Click(object sender, EventArgs e)
@@ -167,19 +160,19 @@ namespace ZP_Max_PDP
             int index = Convert.ToInt32(addMultiIndex.Value);
             int value = Convert.ToInt32(addMultiValue.Value);
 
-            if (index >= createdMultiset.Count)
+            if (index >= gridMultiset.Count)
             {
-                MessageBox.Show("Index nie może być większy niż max index: " + (createdMultiset.Count-1).ToString() + ".\n" + "Aby dodać element na końcu zbioru wpisz index: -1 ");
+                MessageBox.Show("Index nie może być większy niż max index: " + (gridMultiset.Count - 1).ToString() + ".\n" + "Aby dodać element na końcu zbioru wpisz index: -1 ");
             }
             else if (index == -1)
             {
-                createdMultiset.Add(new multiSet() { elementOfmultiSet = value });
-                MultisetGrid.DataSource = createdMultiset.ToList();
+                gridMultiset.Add(new multiSet() { elementOfmultiSet = value });
+                MultisetGrid.Refresh();
             }
             else
             {
-                createdMultiset.Insert(index, new multiSet() { elementOfmultiSet = value });
-                MultisetGrid.DataSource = createdMultiset.ToList();
+                gridMultiset.Insert(index, new multiSet() { elementOfmultiSet = value });
+                MultisetGrid.Refresh();
             }
         }
 
@@ -194,24 +187,47 @@ namespace ZP_Max_PDP
             {
                 MessageBox.Show("Nie można wstawić 0 błędów " + "\n");
             }
-            if (mistakes > createdMultiset.Count)
+            if (mistakes > gridMultiset.Count)
             {
-                MessageBox.Show("Nie można wstawić więcej błędów niż liczba elementów: " + createdMultiset.Count.ToString() + "\n");
+                MessageBox.Show("Nie można wstawić więcej błędów niż liczba elementów: " + gridMultiset.Count.ToString() + "\n");
             }
             else
             {
                 for (int i = 0; i < mistakes; i++)
                 {
-                    int index = randomNumber.Next(0, createdMultiset.Count);
+                    int index = randomNumber.Next(0, gridMultiset.Count);
                     int value = randomNumber.Next(minValue: minValue, maxValue: maxValue);
-                    createdMultiset[index] = new multiSet() { elementOfmultiSet = value };
+                    gridMultiset[index] = new multiSet() { elementOfmultiSet = value };
                 }
-                MultisetGrid.DataSource = createdMultiset.ToList();
+                MultisetGrid.Refresh();
             }
         }
 
+        // ------------- SAVE TO FILE -------------
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            createdMultiset = gridMultiset.ToList();
+            string name = string.Format("\\instance-" + createdMap.Count.ToString() + "-{0:yyyy-MM-dd-hh-mm-ss-tt}", DateTime.Now);
+            string format = ".csv";
+            string path = Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName;
+            path = Path.Combine(path, "Instance");
+            string filePath = path + name + format;
+            createdMultiset = createdMultiset.OrderBy(a => Guid.NewGuid()).ToList(); //desort
+            using (var file = File.CreateText(filePath))
+            {
+                foreach (var item in createdMultiset)
+                {
+                    file.WriteLine(item.elementOfmultiSet + ",");
+                }
+            }
+            SaveButton.Text = "✔️ Zapisano";
+            SaveButton.Enabled = false;
+        }
+
+        // ------------- GO TO ALGORITHM -------------
         private void NextButton_Click(object sender, EventArgs e)
         {
+            createdMultiset = gridMultiset.ToList(); 
             if (!StartForm.Instance.MetroContainer.Controls.ContainsKey("Algo1"))
             {
                 Algo1 li = new Algo1(createdMultiset);
