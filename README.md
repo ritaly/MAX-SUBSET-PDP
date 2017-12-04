@@ -24,4 +24,10 @@ With mistakes
 Hill-Climbing algorithm with restarts parameter  
 
 ### Main algorithm  
-Tabu Search implementation with preliminary solution from hill-climbing
+Tabu Search implementation with preliminary solution from hill-climbing  
+  
+  parameters:
+  * restarts number
+  * iterations number
+  * size of the tabu list 
+  * cadency
