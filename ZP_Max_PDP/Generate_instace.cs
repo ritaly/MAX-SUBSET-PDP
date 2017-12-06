@@ -207,6 +207,8 @@ namespace ZP_Max_PDP
         private void SaveButton_Click(object sender, EventArgs e)
         {
             createdMultiset = gridMultiset.ToList();
+            createdMultiset.RemoveAll(i => i.elementOfmultiSet == 0);
+            createdMultiset.ForEach(i => i.elementOfmultiSet = Math.Abs(i.elementOfmultiSet));
             string name = string.Format("\\instance-" + createdMap.Count.ToString() + "-{0:yyyy-MM-dd-hh-mm-ss-tt}", DateTime.Now);
             string format = ".csv";
             string path = Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName;
@@ -227,7 +229,9 @@ namespace ZP_Max_PDP
         // ------------- GO TO ALGORITHM -------------
         private void NextButton_Click(object sender, EventArgs e)
         {
-            createdMultiset = gridMultiset.ToList(); 
+            createdMultiset = gridMultiset.ToList();
+            createdMultiset.RemoveAll(i => i.elementOfmultiSet == 0);
+            createdMultiset.ForEach(i => i.elementOfmultiSet = Math.Abs(i.elementOfmultiSet));
             if (!StartForm.Instance.MetroContainer.Controls.ContainsKey("Algo1"))
             {
                 Algo1 li = new Algo1(createdMultiset);
@@ -237,5 +241,52 @@ namespace ZP_Max_PDP
             StartForm.Instance.MetroContainer.Controls["Algo1"].BringToFront();
             StartForm.Instance.ButtonBack.Visible = true;
         }
+        // ------------- DGV ERRORS -------------
+        string addError = "Element musi liczbą całkowitą dodatnią. Wprowadź poprawną wartość.";
+        private void Generate_instace_Load(object sender, EventArgs e)
+        {
+            this.DrawGrid.DataError += new DataGridViewDataErrorEventHandler(DrawGrid_DataError);
+            this.DrawGrid.CellValidating += new DataGridViewCellValidatingEventHandler(DrawGrid_CellValidating);
+            this.MultisetGrid.DataError += new DataGridViewDataErrorEventHandler(MultisetGrid_DataError);
+            this.MultisetGrid.CellValidating += new DataGridViewCellValidatingEventHandler(MultisetGrid_CellValidating);
+        }
+        private void MultisetGrid_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show(addError);
+        }
+        private void DrawGrid_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show(addError);
+        }
+        private void DrawGrid_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                int newInteger;
+                if (DrawGrid.Rows[e.RowIndex].IsNewRow) { return; }
+                if (!int.TryParse(e.FormattedValue.ToString(),
+                    out newInteger) || newInteger <= 0)
+                {
+                    e.Cancel = true;
+                    MessageBox.Show(addError);
+                }
+            }
+        }
+        private void MultisetGrid_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                int newInteger;
+
+                if (MultisetGrid.Rows[e.RowIndex].IsNewRow) { return; }
+                if (!int.TryParse(e.FormattedValue.ToString(),
+                    out newInteger) || newInteger <= 0)
+                {
+                    e.Cancel = true;
+                    MessageBox.Show(addError);
+                }
+            }
+        }
+ 
     }
 }

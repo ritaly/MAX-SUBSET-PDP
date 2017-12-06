@@ -75,10 +75,11 @@ namespace ZP_Max_PDP
 
         public static multiSet FromCsv(string csvLine)
         {
-            string[] str = csvLine.Split(',');
+            char[] delimiterChars = { ' ', ',', '.', ':', '\t', ';' };
+            string[] str = csvLine.Split(delimiterChars);
             int value;
             bool success = int.TryParse(str[0], out value);
-            multiSet multiElement = new multiSet() { elementOfmultiSet = value };
+            multiSet multiElement = new multiSet() { elementOfmultiSet = Math.Abs(value) };
             return multiElement;
         }
     }
