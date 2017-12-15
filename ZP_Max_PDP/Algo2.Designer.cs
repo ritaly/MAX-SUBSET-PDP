@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.StripLine stripLine17 = new System.Windows.Forms.DataVisualization.Charting.StripLine();
-            System.Windows.Forms.DataVisualization.Charting.StripLine stripLine18 = new System.Windows.Forms.DataVisualization.Charting.StripLine();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.StripLine stripLine19 = new System.Windows.Forms.DataVisualization.Charting.StripLine();
-            System.Windows.Forms.DataVisualization.Charting.StripLine stripLine20 = new System.Windows.Forms.DataVisualization.Charting.StripLine();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.StripLine stripLine1 = new System.Windows.Forms.DataVisualization.Charting.StripLine();
+            System.Windows.Forms.DataVisualization.Charting.StripLine stripLine2 = new System.Windows.Forms.DataVisualization.Charting.StripLine();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.StripLine stripLine3 = new System.Windows.Forms.DataVisualization.Charting.StripLine();
+            System.Windows.Forms.DataVisualization.Charting.StripLine stripLine4 = new System.Windows.Forms.DataVisualization.Charting.StripLine();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.metroTile1 = new MetroFramework.Controls.MetroTile();
             this.program = new MetroFramework.Controls.MetroTabControl();
             this.TabTabu = new MetroFramework.Controls.MetroTabPage();
@@ -66,9 +66,9 @@
             this.rangeRestart = new System.Windows.Forms.NumericUpDown();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.SolutionChart = new MetroFramework.Controls.MetroTabPage();
+            this.SaveButton = new MetroFramework.Controls.MetroButton();
             this.solutionGrid = new MetroFramework.Controls.MetroGrid();
             this.tabSolChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.SaveButton = new MetroFramework.Controls.MetroButton();
             this.program.SuspendLayout();
             this.TabTabu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabTabuChart)).BeginInit();
@@ -133,7 +133,7 @@
             this.TabTabu.Name = "TabTabu";
             this.TabTabu.Size = new System.Drawing.Size(1064, 508);
             this.TabTabu.TabIndex = 0;
-            this.TabTabu.Text = "TabuSearch settings  ";
+            this.TabTabu.Text = "Ustawienia Tabu ";
             this.TabTabu.VerticalScrollbarBarColor = true;
             this.TabTabu.VerticalScrollbarHighlightOnWheel = false;
             this.TabTabu.VerticalScrollbarSize = 10;
@@ -146,42 +146,42 @@
             this.tabTabuChart.BorderSkin.BorderColor = System.Drawing.Color.LightGray;
             this.tabTabuChart.BorderSkin.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
             this.tabTabuChart.BorderSkin.PageColor = System.Drawing.Color.Transparent;
-            chartArea9.AxisX.InterlacedColor = System.Drawing.Color.Transparent;
-            stripLine17.BorderColor = System.Drawing.Color.LightGray;
-            stripLine17.Interval = 10D;
-            chartArea9.AxisX.StripLines.Add(stripLine17);
-            chartArea9.AxisX2.LineColor = System.Drawing.Color.Gray;
-            chartArea9.AxisY.InterlacedColor = System.Drawing.Color.Transparent;
-            chartArea9.AxisY.IsInterlaced = true;
-            chartArea9.AxisY.LineWidth = 2;
-            stripLine18.BorderColor = System.Drawing.Color.LightGray;
-            stripLine18.Interval = 5D;
-            chartArea9.AxisY.StripLines.Add(stripLine18);
-            chartArea9.AxisY2.LineColor = System.Drawing.Color.Gray;
-            chartArea9.BackColor = System.Drawing.Color.WhiteSmoke;
-            chartArea9.BackHatchStyle = System.Windows.Forms.DataVisualization.Charting.ChartHatchStyle.Cross;
-            chartArea9.BackSecondaryColor = System.Drawing.Color.White;
-            chartArea9.BorderColor = System.Drawing.Color.Transparent;
-            chartArea9.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.DashDot;
-            chartArea9.Name = "ChartArea1";
-            chartArea9.ShadowColor = System.Drawing.Color.Silver;
-            this.tabTabuChart.ChartAreas.Add(chartArea9);
-            legend9.Name = "Legend1";
-            this.tabTabuChart.Legends.Add(legend9);
+            chartArea1.AxisX.InterlacedColor = System.Drawing.Color.Transparent;
+            stripLine1.BorderColor = System.Drawing.Color.LightGray;
+            stripLine1.Interval = 10D;
+            chartArea1.AxisX.StripLines.Add(stripLine1);
+            chartArea1.AxisX2.LineColor = System.Drawing.Color.Gray;
+            chartArea1.AxisY.InterlacedColor = System.Drawing.Color.Transparent;
+            chartArea1.AxisY.IsInterlaced = true;
+            chartArea1.AxisY.LineWidth = 2;
+            stripLine2.BorderColor = System.Drawing.Color.LightGray;
+            stripLine2.Interval = 5D;
+            chartArea1.AxisY.StripLines.Add(stripLine2);
+            chartArea1.AxisY2.LineColor = System.Drawing.Color.Gray;
+            chartArea1.BackColor = System.Drawing.Color.WhiteSmoke;
+            chartArea1.BackHatchStyle = System.Windows.Forms.DataVisualization.Charting.ChartHatchStyle.Cross;
+            chartArea1.BackSecondaryColor = System.Drawing.Color.White;
+            chartArea1.BorderColor = System.Drawing.Color.Transparent;
+            chartArea1.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.DashDot;
+            chartArea1.Name = "ChartArea1";
+            chartArea1.ShadowColor = System.Drawing.Color.Silver;
+            this.tabTabuChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.tabTabuChart.Legends.Add(legend1);
             this.tabTabuChart.Location = new System.Drawing.Point(-4, 227);
             this.tabTabuChart.Name = "tabTabuChart";
             this.tabTabuChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             this.tabTabuChart.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.Crimson};
-            series9.BackSecondaryColor = System.Drawing.Color.Gainsboro;
-            series9.BorderColor = System.Drawing.Color.Transparent;
-            series9.BorderWidth = 3;
-            series9.ChartArea = "ChartArea1";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series9.Color = System.Drawing.Color.Crimson;
-            series9.Legend = "Legend1";
-            series9.Name = "Series1";
-            this.tabTabuChart.Series.Add(series9);
+            series1.BackSecondaryColor = System.Drawing.Color.Gainsboro;
+            series1.BorderColor = System.Drawing.Color.Transparent;
+            series1.BorderWidth = 3;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Color = System.Drawing.Color.Crimson;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.tabTabuChart.Series.Add(series1);
             this.tabTabuChart.Size = new System.Drawing.Size(1060, 293);
             this.tabTabuChart.TabIndex = 86;
             // 
@@ -399,7 +399,7 @@
             this.computeButton.Text = "Utwórz";
             this.computeButton.UseCustomBackColor = true;
             this.computeButton.UseSelectable = true;
-            this.computeButton.Click += new System.EventHandler(this.computeButton_Click_1);
+            this.computeButton.Click += new System.EventHandler(this.computeButton_Click);
             // 
             // rangeRestart
             // 
@@ -450,100 +450,10 @@
             this.SolutionChart.Name = "SolutionChart";
             this.SolutionChart.Size = new System.Drawing.Size(1064, 508);
             this.SolutionChart.TabIndex = 1;
-            this.SolutionChart.Text = "  Solution chart ";
+            this.SolutionChart.Text = "Wynik i zapis";
             this.SolutionChart.VerticalScrollbarBarColor = true;
             this.SolutionChart.VerticalScrollbarHighlightOnWheel = false;
             this.SolutionChart.VerticalScrollbarSize = 10;
-            // 
-            // solutionGrid
-            // 
-            this.solutionGrid.AllowUserToResizeRows = false;
-            this.solutionGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.solutionGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.solutionGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.solutionGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.solutionGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
-            this.solutionGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.solutionGrid.DefaultCellStyle = dataGridViewCellStyle14;
-            this.solutionGrid.EnableHeadersVisualStyles = false;
-            this.solutionGrid.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.solutionGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.solutionGrid.Location = new System.Drawing.Point(13, 28);
-            this.solutionGrid.Name = "solutionGrid";
-            this.solutionGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.solutionGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
-            this.solutionGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.solutionGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.solutionGrid.Size = new System.Drawing.Size(185, 456);
-            this.solutionGrid.TabIndex = 70;
-            // 
-            // tabSolChart
-            // 
-            this.tabSolChart.BackSecondaryColor = System.Drawing.Color.Gray;
-            this.tabSolChart.BorderlineColor = System.Drawing.SystemColors.InactiveBorder;
-            this.tabSolChart.BorderSkin.BackSecondaryColor = System.Drawing.Color.White;
-            this.tabSolChart.BorderSkin.BorderColor = System.Drawing.Color.LightGray;
-            this.tabSolChart.BorderSkin.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            this.tabSolChart.BorderSkin.PageColor = System.Drawing.Color.Transparent;
-            chartArea10.AxisX.InterlacedColor = System.Drawing.Color.Transparent;
-            stripLine19.BorderColor = System.Drawing.Color.LightGray;
-            stripLine19.Interval = 10D;
-            chartArea10.AxisX.StripLines.Add(stripLine19);
-            chartArea10.AxisX2.LineColor = System.Drawing.Color.Gray;
-            chartArea10.AxisY.InterlacedColor = System.Drawing.Color.Transparent;
-            chartArea10.AxisY.IsInterlaced = true;
-            chartArea10.AxisY.LineWidth = 2;
-            stripLine20.BorderColor = System.Drawing.Color.LightGray;
-            stripLine20.Interval = 5D;
-            chartArea10.AxisY.StripLines.Add(stripLine20);
-            chartArea10.AxisY2.LineColor = System.Drawing.Color.Gray;
-            chartArea10.BackColor = System.Drawing.Color.WhiteSmoke;
-            chartArea10.BackHatchStyle = System.Windows.Forms.DataVisualization.Charting.ChartHatchStyle.Cross;
-            chartArea10.BackSecondaryColor = System.Drawing.Color.White;
-            chartArea10.BorderColor = System.Drawing.Color.Transparent;
-            chartArea10.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.DashDot;
-            chartArea10.Name = "ChartArea1";
-            chartArea10.ShadowColor = System.Drawing.Color.Silver;
-            this.tabSolChart.ChartAreas.Add(chartArea10);
-            legend10.Name = "Legend1";
-            this.tabSolChart.Legends.Add(legend10);
-            this.tabSolChart.Location = new System.Drawing.Point(166, 46);
-            this.tabSolChart.Name = "tabSolChart";
-            this.tabSolChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            this.tabSolChart.PaletteCustomColors = new System.Drawing.Color[] {
-        System.Drawing.Color.Crimson};
-            series10.BackSecondaryColor = System.Drawing.Color.Gainsboro;
-            series10.BorderColor = System.Drawing.Color.Transparent;
-            series10.BorderWidth = 3;
-            series10.ChartArea = "ChartArea1";
-            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series10.Color = System.Drawing.Color.Crimson;
-            series10.Legend = "Legend1";
-            series10.Name = "Series1";
-            this.tabSolChart.Series.Add(series10);
-            this.tabSolChart.Size = new System.Drawing.Size(895, 398);
-            this.tabSolChart.TabIndex = 2;
             // 
             // SaveButton
             // 
@@ -558,6 +468,97 @@
             this.SaveButton.UseCustomBackColor = true;
             this.SaveButton.UseCustomForeColor = true;
             this.SaveButton.UseSelectable = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
+            // solutionGrid
+            // 
+            this.solutionGrid.AllowUserToResizeRows = false;
+            this.solutionGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.solutionGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.solutionGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.solutionGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.solutionGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.solutionGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.solutionGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            this.solutionGrid.EnableHeadersVisualStyles = false;
+            this.solutionGrid.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.solutionGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.solutionGrid.Location = new System.Drawing.Point(13, 28);
+            this.solutionGrid.Name = "solutionGrid";
+            this.solutionGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.solutionGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.solutionGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.solutionGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.solutionGrid.Size = new System.Drawing.Size(185, 456);
+            this.solutionGrid.TabIndex = 70;
+            // 
+            // tabSolChart
+            // 
+            this.tabSolChart.BackSecondaryColor = System.Drawing.Color.Gray;
+            this.tabSolChart.BorderlineColor = System.Drawing.SystemColors.InactiveBorder;
+            this.tabSolChart.BorderSkin.BackSecondaryColor = System.Drawing.Color.White;
+            this.tabSolChart.BorderSkin.BorderColor = System.Drawing.Color.LightGray;
+            this.tabSolChart.BorderSkin.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            this.tabSolChart.BorderSkin.PageColor = System.Drawing.Color.Transparent;
+            chartArea2.AxisX.InterlacedColor = System.Drawing.Color.Transparent;
+            stripLine3.BorderColor = System.Drawing.Color.LightGray;
+            stripLine3.Interval = 10D;
+            chartArea2.AxisX.StripLines.Add(stripLine3);
+            chartArea2.AxisX2.LineColor = System.Drawing.Color.Gray;
+            chartArea2.AxisY.InterlacedColor = System.Drawing.Color.Transparent;
+            chartArea2.AxisY.IsInterlaced = true;
+            chartArea2.AxisY.LineWidth = 2;
+            stripLine4.BorderColor = System.Drawing.Color.LightGray;
+            stripLine4.Interval = 5D;
+            chartArea2.AxisY.StripLines.Add(stripLine4);
+            chartArea2.AxisY2.LineColor = System.Drawing.Color.Gray;
+            chartArea2.BackColor = System.Drawing.Color.WhiteSmoke;
+            chartArea2.BackHatchStyle = System.Windows.Forms.DataVisualization.Charting.ChartHatchStyle.Cross;
+            chartArea2.BackSecondaryColor = System.Drawing.Color.White;
+            chartArea2.BorderColor = System.Drawing.Color.Transparent;
+            chartArea2.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.DashDot;
+            chartArea2.Name = "ChartArea1";
+            chartArea2.ShadowColor = System.Drawing.Color.Silver;
+            this.tabSolChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.tabSolChart.Legends.Add(legend2);
+            this.tabSolChart.Location = new System.Drawing.Point(166, 46);
+            this.tabSolChart.Name = "tabSolChart";
+            this.tabSolChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
+            this.tabSolChart.PaletteCustomColors = new System.Drawing.Color[] {
+        System.Drawing.Color.Crimson};
+            series2.BackSecondaryColor = System.Drawing.Color.Gainsboro;
+            series2.BorderColor = System.Drawing.Color.Transparent;
+            series2.BorderWidth = 3;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Color = System.Drawing.Color.Crimson;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.tabSolChart.Series.Add(series2);
+            this.tabSolChart.Size = new System.Drawing.Size(895, 398);
+            this.tabSolChart.TabIndex = 2;
             // 
             // Algo2
             // 

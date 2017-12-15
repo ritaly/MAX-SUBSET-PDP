@@ -36,7 +36,7 @@ namespace ZP_Max_PDP
 
         List<int> bestSolution = new List<int>(); 
         List<int> bestSolutionIds = new List<int>();
-        List<int> currentSolution; //best in restart
+        List<int> currentSolution; // best in restart
         List<int> currentSolutionIds;
         bool[] isDeleted;
 
@@ -48,7 +48,7 @@ namespace ZP_Max_PDP
             int minValue = 0;
             int maxValue = _multiset.Count;
             int restarts = Convert.ToInt32(rangeRestart.Value) + 1;
-            double partialTime = 0.0; //timer for each restart
+            double partialTime = 0.0; // for each restart
 
             Random randomValue = new Random();
 
@@ -143,8 +143,22 @@ namespace ZP_Max_PDP
 
         public bool CanBeSolution(List<int> currentMultiset)
         {
- 
-            return currentMultiset.All(_multiset.Contains);
+            //currentMultiset.All(_multiset.Contains);
+            IEnumerable<int> both = Compare2Lists(currentMultiset, _multiset);
+            bool subsetOf = (currentMultiset.Count() == both.Count()) ? true : false;
+            return subsetOf;
+        }
+        public static IEnumerable<T> Compare2Lists<T>(IEnumerable<T> source, IEnumerable<T> target)
+        {
+            List<T> list = target.ToList();
+            foreach (T item in source)
+            {
+                if (list.Contains(item))
+                {
+                    list.Remove(item);
+                    yield return item;
+                }
+            }
         }
 
         public int FindNeighbor(int id)

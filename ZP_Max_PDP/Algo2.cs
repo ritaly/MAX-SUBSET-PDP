@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ZP_Max_PDP
@@ -23,43 +24,42 @@ namespace ZP_Max_PDP
         {
             this.instanceMultiset = instanceMultiset;
             this.initialSolutionIds = preSolutionIds;
-            this.bestSolutionIds = preSolutionIds;
             InitializeComponent();
         }
 
         private void Algo2_Load(object sender, EventArgs e)
         {
-            _multiset = new List<int>(); // przechowuje kopię multizbioru id jako listę intów,  anie obiektów
+            _multiset = new List<int>(); // copy multiset as int list
             foreach (multiSet o in instanceMultiset)
             {
                 _multiset.Add(item: o.elementOfmultiSet);
             }
-            
+
             sizeElements.Text = _multiset.Count().ToString();
             bestHillClimbing.Text = initialSolutionIds.Count.ToString();
             progressBar.Minimum = 0;
         }
 
-        List<int[]> tabuList; //lista tabu 
-        List<int> currentBestIds;
-        List<int> restartBestIds; //najlepszy wynik w danym restrcie
+        List<int[]> tabuList; // [id, cadence]
+        List<int> currentBestIds; // per iteration
+        List<int> restartBestIds; // best in restart
 
-        private void computeButton_Click_1(object sender, EventArgs e)
+        private void computeButton_Click(object sender, EventArgs e)
         {
             finalSolution = new List<multiSet>();
             progressBar.Visible = true;
             progressBar.Value = progressBar.Minimum;
             progressBar.Maximum = Convert.ToInt32(rangeRestart.Value) * Convert.ToInt32(iterPerRestartRange.Value);
-            double partialTime = 0.0; // zegar dla poszczególnych restartów
-            System.Diagnostics.Stopwatch globalTimer = System.Diagnostics.Stopwatch.StartNew(); //start globalnego zegara
+            double partialTime = 0.0; // for restart
+            System.Diagnostics.Stopwatch globalTimer = System.Diagnostics.Stopwatch.StartNew(); 
 
             int restarts = Convert.ToInt32(rangeRestart.Value);
-            int iterPerRestart = Convert.ToInt32(iterPerRestartRange.Value); //liczba iteracji w danym restarcie
-            int sizeTabuAsProc = Convert.ToInt32(sizeTabu.Value)/100;
+            int iterPerRestart = Convert.ToInt32(iterPerRestartRange.Value); 
+            double sizeTabuAsProc = (double)Convert.ToInt32(sizeTabu.Value) / 100;
             int sizeOfTabu;
             int cadenceOfTabu = Convert.ToInt32(cadenceTabu.Value);
+            
             int axisY = YChart(_multiset.Count());
-
             tabTabuChart.Series.Clear();
             tabTabuChart.Invalidate();
 
@@ -80,6 +80,7 @@ namespace ZP_Max_PDP
 
             tabSolChart.Series.Clear();
             tabSolChart.Invalidate();
+            int one3 = iterPerRestart / 3;
             var ChartSolution2 = new System.Windows.Forms.DataVisualization.Charting.Series
             {
                 Name = "M2",
@@ -95,69 +96,93 @@ namespace ZP_Max_PDP
             tabSolChart.ChartAreas[0].AxisY.Title = "Liczba elementów rozwiązania P (max M)";
             tabSolChart.ChartAreas[0].AxisX.Title = "Liczba iteracji";
 
-            while (restarts!=0) {
-               if (restarts % 3 == 0)
+            tabuList = new List<int[]>(); //[id, cadence]
+            bestSolutionIds = new List<int>(initialSolutionIds);
+            restartBestIds = new List<int>(initialSolutionIds);
+            while (restarts != 0)
+            {
+                if (restarts % 3 == 0) //clear initial solution
                 {
                     GenerateNewInitialSolution();
+                    restartBestIds = new List<int>(initialSolutionIds);
                 }
-               restartBestIds = new List<int>(initialSolutionIds);
-               currentBestIds = new List<int>(restartBestIds);
-
-                for (int i=0; i < iterPerRestart; i++)
+                if (restarts % 5 == 0) // clear tabu
                 {
-                    sizeOfTabu = (int)Math.Floor((double)currentBestIds.Count * sizeTabuAsProc);
-                    tabuList = new List<int[]>(sizeOfTabu); //przechuwuje listę int odp indeksom w multisecie
+                    ClearTabu();
+                }
+
+                currentBestIds = new List<int>(restartBestIds);
+                for (int i = 0; i < iterPerRestart; i++)
+                {
+                    if (i % 10 == 0)
+                    {
+                        AddElementToSolution();
+
+                    }
+
+                    sizeOfTabu = (int)Math.Ceiling((double)currentBestIds.Count * sizeTabuAsProc);
                     System.Diagnostics.Stopwatch iterTimer = System.Diagnostics.Stopwatch.StartNew();
-                    //trzeba uaktualniec tabu inaczej moze nie być miejsca by dodać do tabu
-                    tabuList.RemoveAll(match: r => r[1] == 0);
+                    tabuList.RemoveAll(match: t => t[1] == 0); //tabu update
                     tabuList.ForEach(f => f[1] -= 1);
-                    //losuj id do wykonnia ruchu
-                    int idOnCurrent = RandElementToMove();
-                    int idOnMultiset = currentBestIds[idOnCurrent]; //actualne id
+                    if (tabuList.Count > sizeOfTabu)
+                    {
+                        tabuList.RemoveAt(0);
+                    }
+                    List<int> valuesOnTabu = new List<int>(tabuList.Select(s => s[0]).ToList()); //copy ids to int list
+                    int idToMove = RandElementToMove(valuesOnTabu);
+                    int idOnMultiset = currentBestIds[idToMove]; //actual id
 
                     int[] tabuElem = new int[2] { idOnMultiset, cadenceOfTabu };
                     tabuList.Add(tabuElem);
-                    //znajdz sasiadow
-                    List<int> candidatesList = FindNeighbors(idOnMultiset);
-                    //wykonaj ruch
-                    MakeMove(idOnMultiset, idOnCurrent, candidatesList);
-                    ChartSolution.Points.AddY(currentBestIds.Count());
-                    ChartSolution2.Points.AddY(currentBestIds.Count());
+                    //algorithm: find neibours, move, update structure
+                    List<int> candidatesList = FindNeighbors(idToMove); 
+                    MakeMove(idOnMultiset, idToMove, candidatesList);
+
+                    if (currentBestIds.Count > restartBestIds.Count)
+                    {
+                        restartBestIds = new List<int>(currentBestIds);
+                    }
+                    ChartSolution.Points.AddY(currentBestIds.Count);
+                    ChartSolution2.Points.AddY(currentBestIds.Count);
                     tabTabuChart.Update();
                     tabSolChart.Update();
-                    
+
                     progressBar.Value += 1;
                     progressBar.Update();
                     iterTimer.Stop();
                     partialTime += iterTimer.ElapsedMilliseconds;
                     timerLabel.Text = (partialTime * 0.001).ToString();
                     timerLabel.Update();
-
                 }
-                bestSolutionIds = (restartBestIds.Count > bestSolutionIds.Count) ? currentBestIds : bestSolutionIds;
+                if (restartBestIds.Count > bestSolutionIds.Count)
+                {
+                    bestSolutionIds = new List<int>(restartBestIds);
+                }
                 restarts--;
             }
+
+            sizeSolutionTabu.Text = bestSolutionIds.Count.ToString();
+            sizeSolutionTabu.Update();
             globalTimer.Stop();
             progressBar.Value += 1;
-            timerLabel.Text = (globalTimer.ElapsedMilliseconds * 0.001).ToString();
-            MessageBox.Show("koniec : " + String.Join(",", bestSolutionIds.Select(x => _multiset[x])));
-
             
+            timerLabel.Text = (globalTimer.ElapsedMilliseconds * 0.001).ToString();
+            MessageBox.Show("Zakończono obliczenia");
+            //MessageBox.Show("Koniec: " + String.Join(",", bestSolutionIds.Select(x => _multiset[x])));
+
+
             foreach (int o in bestSolutionIds)
             {
                 finalSolution.Add(new multiSet { elementOfmultiSet = _multiset[o] });
             }
-            finalSolution = finalSolution.OrderBy(o => o.elementOfmultiSet).ToList(); //Sort Output
+            finalSolution = finalSolution.OrderBy(o => o.elementOfmultiSet).ToList(); //sort output
             solutionGrid.Refresh();
             solutionGrid.DataSource = finalSolution;
-            sizeSolutionTabu.Text = bestSolutionIds.Count.ToString();
-
         }
-
         // ------------- MAKE MOVE TABU -------------
         public void MakeMove(int idx, int idc, List<int> candidats)
         {
-            bool is_valid = false; 
+            bool is_valid = false;
 
             // ------------- ADD ELEMENT -------------
             foreach (int candidat in candidats)
@@ -165,7 +190,7 @@ namespace ZP_Max_PDP
                 currentBestIds.Add(candidat); //add candidat
 
                 // ------------- generate multiset from ids -------------
-                List<int> currentMultiset = new List<int>(); 
+                List<int> currentMultiset = new List<int>();
                 foreach (int i in currentBestIds)
                 {
                     currentMultiset.Add(_multiset[i]);
@@ -175,31 +200,29 @@ namespace ZP_Max_PDP
                     int index = currentBestIds[i];
                     foreach (int item in currentBestIds.Skip(i + 1).ToList())
                     {
-                        currentMultiset.Add(Math.Abs( _multiset[index] - _multiset[item]));
+                        currentMultiset.Add(Math.Abs(_multiset[index] - _multiset[item]));
                     }
                 }
                 is_valid = CanBeSolution(currentMultiset);
-                //currentBestIds.Select(x => _multiset[x])) 
-
-                if (!is_valid) //invalid remove
+                
+                if (is_valid == false) //invalid remove
                 {
                     currentBestIds.RemoveAt(currentBestIds.Count - 1);
                 }
                 else
                 {
-                    //--- structure update ---
-                    restartBestIds = (currentBestIds.Count > restartBestIds.Count) ? currentBestIds : restartBestIds;
                     break;
                 }
             }
             // ------------- SWAP ELEMENT -------------
+
             if (!is_valid)
             {
                 foreach (int candidat in candidats)
                 {
                     currentBestIds[idc] = candidat; // swap idx <=> candidat
                     // ------------- generate multiset from ids -------------
-                    List<int> currentMultiset = new List<int>(); 
+                    List<int> currentMultiset = new List<int>();
                     foreach (int i in currentBestIds)
                     {
                         currentMultiset.Add(_multiset[i]);
@@ -220,7 +243,6 @@ namespace ZP_Max_PDP
                     }
                     else
                     {
-                        restartBestIds = (currentBestIds.Count > restartBestIds.Count) ? currentBestIds : restartBestIds;
                         break;
                     }
                 }
@@ -229,27 +251,94 @@ namespace ZP_Max_PDP
             // ------------- REMOVE ELEMENT -------------
             if (!is_valid)
             {
-                currentBestIds.RemoveAll(i => i == idx );  //--- structure update --
-                
+                currentBestIds.RemoveAll(i => i == idx);  //--- structure update --
+
             }
         }
 
         public bool CanBeSolution(List<int> currentMultiset)
         {
-            return currentMultiset.All(_multiset.Contains);
+            //currentMultiset.All(_multiset.Contains);
+            IEnumerable<int> both = Compare2Lists(currentMultiset, _multiset);
+            bool subsetOf = (currentMultiset.Count() == both.Count()) ? true : false;
+            return subsetOf;
+        }
+        public static IEnumerable<T> Compare2Lists<T>(IEnumerable<T> source, IEnumerable<T> target)
+        {
+            List<T> list = target.ToList();
+            foreach (T item in source)
+            {
+                if (list.Contains(item))
+                {
+                    list.Remove(item);
+                    yield return item;
+                }
+            }
         }
 
-        Random randomValue = new Random();
-        public int RandElementToMove()
+        private void AddElementToSolution()
         {
+            Random randomValue = new Random();
             int minValue = 0;
-            int maxValue = currentBestIds.Count;
-            int value = randomValue.Next(minValue: minValue, maxValue: maxValue);
+            int maxValue = _multiset.Count;
+            int aid = randomValue.Next(minValue: minValue, maxValue: maxValue);
+            bool valid = false;
+            currentBestIds.Add(aid); //add candidat
+
+            // ------------- generate multiset from ids -------------
+            List<int> currentMultiset = new List<int>();
+            foreach (int i in currentBestIds)
+            {
+                currentMultiset.Add(_multiset[i]);
+            }
+            for (int i = 0; i < currentBestIds.Count; i++)
+            {
+                int index = currentBestIds[i];
+                foreach (int item in currentBestIds.Skip(i + 1).ToList())
+                {
+                    currentMultiset.Add(Math.Abs(_multiset[index] - _multiset[item]));
+                }
+            }
+            valid = CanBeSolution(currentMultiset);
+            if (valid == false) //invalid remove
+            {
+                currentBestIds.RemoveAt(currentBestIds.Count - 1);
+            }
+            else
+            {
+                AddElementToSolution();
+            }
+        }
+
+        private void ClearTabu()
+        {
+            tabuList = new List<int[]>();
+        }
+
+        public int RandElementToMove(List<int> valuesOnTabu)
+        {
+            Random randomValue = new Random();
+            int minValue = 0;
+            int maxValue;
+            int value;
+            bool AllOnTabu = false;
+            if (currentBestIds.All(valuesOnTabu.Contains))
+            {
+                AllOnTabu = true;
+            }
+            Console.WriteLine(AllOnTabu);
+            if (AllOnTabu)
+            {
+                ClearTabu();
+            }
+            maxValue = currentBestIds.Count;
+            value = randomValue.Next(minValue: minValue, maxValue: maxValue);
             int index = currentBestIds[value];
             if (tabuList.Any(k => k[0] == index)) // is index on tabu list now?
             {
-                 RandElementToMove();
+                RandElementToMove(valuesOnTabu);
             }
+
             return value;
         }
         public List<int> FindNeighbors(int id)
@@ -260,12 +349,12 @@ namespace ZP_Max_PDP
             int prev2Id = -1;
             if (prevId != 0)
             {
-                prev2Id = FindPrev(prevId-1);
+                prev2Id = FindPrev(prevId - 1);
             }
             int next2Id = -1;
-            if (nextId != (_multiset.Count() - 1) )
+            if (nextId != (_multiset.Count() - 1))
             {
-                next2Id = FindPrev(nextId+1);
+                next2Id = FindPrev(nextId + 1);
             }
 
             List<int> neighborhood = new List<int>();
@@ -322,6 +411,7 @@ namespace ZP_Max_PDP
             //return initialSolutionIds! hillclimbing
             int minValue = 0;
             int maxValue = _multiset.Count;
+            Random randomValue = new Random();
             int idx = randomValue.Next(minValue: minValue, maxValue: maxValue);
             bool isEnd = false;
             initialSolutionIds = new List<int>();
@@ -427,7 +517,20 @@ namespace ZP_Max_PDP
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            //test
+            string name = string.Format("\\final-" + finalSolution.Count.ToString() + "-{0:yyyy-MM-dd-hh-mm-ss-tt}", DateTime.Now);
+            string format = ".csv";
+            string path = Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName;
+            path = Path.Combine(path, "Instance");
+            string filePath = path + name + format;
+            using (var file = File.CreateText(filePath))
+            {
+                foreach (var item in finalSolution)
+                {
+                    file.WriteLine(item.elementOfmultiSet + ",");
+                }
+            }
+            SaveButton.Text = "✔️ Zapisano";
+            SaveButton.Enabled = false;
         }
     }
 }
