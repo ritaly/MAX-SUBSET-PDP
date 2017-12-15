@@ -22,6 +22,7 @@ With mistakes
 
 ### Preliminary algorithm  
 Hill-Climbing algorithm with restarts parameter  
+O(r x n) // r -restarts n-max instance
 
 ### Main algorithm  
 Tabu Search implementation with preliminary solution from hill-climbing  
